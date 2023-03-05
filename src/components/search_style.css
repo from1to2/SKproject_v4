@@ -1,0 +1,21 @@
+.div {
+    text-align: center;
+    font-family: 'Jua',
+        sans-serif;
+}
+
+.backButton{
+    padding-right: 3%;
+}
+
+.searchFrame {
+    display: inline-block;
+    width: 327px;
+    height: 600px;
+    border-radius: 5% ;
+    border-width: thick;        
+}
+
+.search {
+    padding-right: 17%;
+}
