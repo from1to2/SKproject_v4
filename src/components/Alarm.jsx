@@ -1,5 +1,5 @@
 import { Avatar, Container, AppBar, Toolbar, IconButton, Drawer, Typography, Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListItemAvatar, Grid, Button } from '@mui/material';
-import { HomeOutlined, ContentCopyOutlined, NotificationsNoneOutlined, BookmarkBorderOutlined, SettingsOutlined, Search, Menu, AccountCircleOutlined } from '@mui/icons-material';
+import { HomeOutlined, ContentCopyOutlined, NotificationsNoneOutlined, BookmarkBorderOutlined, SettingsOutlined, Menu, AccountCircleOutlined } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -108,16 +108,10 @@ const Alarm = () => {
                             variant='h5'
                             noWrap
                             component="div"
-                            sx={{ flexGrow: 1, textAlign: 'center' }}>
+                            sx={{ flexGrow: 1, textAlign: 'center', marginRight: '1em' }}>
                             알림<br />
                             <div style={{ fontSize: "14px" }}>안양 중앙 시장</div>
                         </Typography>
-                        <IconButton
-                            size='large'
-                            aria-label='search'
-                            color='inherit'>
-                            <Search />
-                        </IconButton>
                     </Toolbar>
                 </AppBar><br />
                 <Box

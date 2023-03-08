@@ -1,5 +1,5 @@
 import { AppBar, Container, Toolbar, IconButton, Box, Typography, List, Divider, ListItem, ListItemButton, ListItemIcon, ListItemText, Avatar, Drawer, ListItemAvatar, Tabs, Tab, Grid, Button } from '@mui/material';
-import { Menu, Search, ContentCopyOutlined, NotificationsNoneOutlined, BookmarkBorderOutlined, SettingsOutlined, AccountCircleOutlined, HomeOutlined } from '@mui/icons-material';
+import { Menu, ContentCopyOutlined, NotificationsNoneOutlined, BookmarkBorderOutlined, SettingsOutlined, AccountCircleOutlined, HomeOutlined } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -127,20 +127,14 @@ const MyOrderHistory = () => {
                             variant='h6'
                             noWrap
                             component="div"
-                            sx={{ flexGrow: 1, textAlign: 'center' }}>
+                            sx={{ flexGrow: 1, textAlign: 'center', marginRight: "1.6em" }}>
                             주문 내역
                         </Typography>
-                        <IconButton
-                            size='large'
-                            aria-label='search'
-                            color='inherit'>
-                            <Search />
-                        </IconButton>
                     </Toolbar>
                 </AppBar><br />
                 <Box width="100%">
                     <Tabs
-                        sx={{ paddingTop: 3, weight: 2, paddingBottom: 1 }}
+                        sx={{ paddingTop: 3, paddingBottom: 1 }}
                         TabIndicatorProps={{ style: { backgroundColor: 'orange' } }}
                         textColor='inherit'
                         value={value}
@@ -299,6 +293,7 @@ const MyOrderHistory = () => {
                         </Grid>
                     </Grid>
                 </Box>
+                {/* 완료 주문 코드끝 */}
             </TabPanel>
         </Container>
     );

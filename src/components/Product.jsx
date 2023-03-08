@@ -1,10 +1,10 @@
 const product = [
     {
-        title: "중앙과일가게",
+        title: "중앙 과일가게",
         poster: "./images/fruitStore/fruitStore.jpg"
     },
     {
-        title: "남부과일가게",
+        title: "남부 과일가게",
         poster: "./images/fruitStore/fruitStore2.jpg"
     },
     {
@@ -12,7 +12,7 @@ const product = [
         poster: "./images/fruitStore/fruitStore3.jpg"
     },
     {
-        title: "서부과일가게",
+        title: "서부 과일가게",
         poster: "./images/fruitStore/fruitStore4.jpg"
     },
     {

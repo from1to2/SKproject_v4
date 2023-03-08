@@ -152,7 +152,11 @@ const Userprofile = () => {
                         onChange={changeMyNickname}
                         value={nickname || ""}
                         InputProps={{
-                            endAdornment: <IconButton position="end" onClick={deleteMyNickname}><CloseRounded /></IconButton>
+                            endAdornment: <IconButton
+                                position="end"
+                                onClick={deleteMyNickname}>
+                                <CloseRounded />
+                            </IconButton>
                         }}>
                     </TextField>
                     <Button

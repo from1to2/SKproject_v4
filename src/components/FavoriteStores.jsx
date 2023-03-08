@@ -1,5 +1,5 @@
 import { AppBar, Box, Button, Container, Divider, Drawer, Grid, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography, Avatar, ListItemAvatar } from '@mui/material';
-import { Menu, HomeOutlined, ContentCopyOutlined, NotificationsNoneOutlined, BookmarkBorderOutlined, SettingsOutlined, Search, AccountCircleOutlined } from '@mui/icons-material';
+import { Menu, HomeOutlined, ContentCopyOutlined, NotificationsNoneOutlined, BookmarkBorderOutlined, SettingsOutlined, AccountCircleOutlined } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -104,16 +104,10 @@ const FavoriteStores = () => {
                             variant='h5'
                             noWrap
                             component="div"
-                            sx={{ flexGrow: 1, textAlign: 'center' }}>
+                            sx={{ flexGrow: 1, textAlign: 'center', marginRight: '1em' }}>
                             찜한 가게 목록<br />
                             <div style={{ fontSize: "14px" }}>안양 중앙 시장</div>
                         </Typography>
-                        <IconButton
-                            size='large'
-                            aria-label='search'
-                            color='inherit'>
-                            <Search />
-                        </IconButton>
                     </Toolbar>
                 </AppBar><br />
                 <Box

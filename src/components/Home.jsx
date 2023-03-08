@@ -1,10 +1,14 @@
-import { AppBar, Box, Button, Container, IconButton, Stack, Toolbar, Typography, Grid, Drawer, List, ListItem, ListItemButton, ListItemIcon, Divider, ListItemText, Avatar, ListItemAvatar } from '@mui/material';
+import { AppBar, Box, Container, IconButton, Stack, Toolbar, Typography, Grid, Drawer, List, ListItem, ListItemButton, ListItemIcon, Divider, ListItemText, Avatar, ListItemAvatar, Tabs, Tab } from '@mui/material';
 import { Menu, Search, ArrowForward, ContentCopyOutlined, NotificationsNoneOutlined, BookmarkBorderOutlined, SettingsOutlined, AccountCircleOutlined } from "@mui/icons-material"
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
     const navigate = useNavigate();
+    const [value, setValue] = useState('one');
+    const handleToptab = (e, newValue) => {
+        setValue(newValue);
+    }
     const goToMyOrderHistory = () => {
         navigate("/MyOrderHistory")
     }
@@ -20,54 +24,22 @@ const Home = () => {
     const goToMySettings = () => {
         navigate("/Userprofile")
     }
-    const [open, setOpen] = useState(false);
-    const list = () => {
-        <Box
-            sx={{ width: 250, height: 250 }}
-            role="presentation">
-            <List>
-                <Typography
-                    variant='h6'
-                    component="div"
-                    sx={{ fontSize: 15 }}
-                >나의 정보</Typography>
-                <Divider />
-                <ListItem disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <ContentCopyOutlined />
-                        </ListItemIcon>
-                        <ListItemText primary="나의 주문 내역" />
-                    </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <NotificationsNoneOutlined />
-                        </ListItemIcon>
-                        <ListItemText primary="찜한 가게 목록" />
-                    </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <BookmarkBorderOutlined />
-                        </ListItemIcon>
-                        <ListItemText primary="설정" />
-                    </ListItemButton>
-                </ListItem><ListItem disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <SettingsOutlined />
-                        </ListItemIcon>
-                        <ListItemText primary="사용자 이름. 이메일" />
-                    </ListItemButton>
-                </ListItem>
-            </List>
-        </Box>
+    const goToProductSearch = () => {
+        navigate("/ProductSearch")
     }
+    const TabPanel = (props) => {
+        const { children, value, index } = props;
+        return (<div hidden={value !== index}>
+            {value === index && (
+                <Box>
+                    {children}
+                </Box>
+            )}
+        </div>)
+    }
+    const [open, setOpen] = useState(false);
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" sx={{ paddingLeft: '0', paddingRight: "0" }}>
             <Box sx={{
                 flexDirection: 'column',
                 display: "flex",
@@ -146,73 +118,73 @@ const Home = () => {
                             variant='h5'
                             noWrap
                             component="div"
-                            sx={{ flexGrow: 1, textAlign: 'center' }}>
+                            sx={{ flexGrow: 1, textAlign: 'center', marginRight: "1em" }}>
                             홈페이지
                         </Typography>
                         <IconButton
                             size='large'
                             aria-label='search'
                             color='inherit'
-                        >
+                            onClick={goToProductSearch}>
                             <Search />
                         </IconButton>
                     </Toolbar>
                 </AppBar><br />
-                <Stack
-                    direction="row"
-                    mt={3}
-                    weight={4}
-                >
-                    <Button
-                        weight={1}
-                        size='large'
-                    >메인</Button>
-                    <Button
-                        weight={1}
-                        size='large'
-                    >시장정보</Button>
-                    <Button
-                        weight={1}
-                        size='large'
-                    >커뮤니티</Button>
-                    <Button
-                        weight={1}
-                        size='large'
-                    >편의시설</Button>
-                </Stack><br />
-                <div style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 11 }}>
-                    현재 진행중인 이벤트
-                </div>
-                <img src="./images/homePageImg/fruitSale.png" alt="설연휴 세일" />
-                <Grid container mt={3}>
-                    <Grid item xs>
-                        <div style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 15 }}>추천 코스 안내</div>
-                    </Grid>
-                    <Grid item>
-                        <ArrowForward />
-                    </Grid>
-                </Grid>
-                <Stack
-                    direction="row"
-                    weight={2}
-                >
-                    <Stack
-                        direction="column"
-                        weight={1}
-                    >
-                        <img src="/images/homePageImg/tteokbokki.png" alt="떡볶이" width={190} height={180} />
-                        <div style={{ textAlign: 'center' }}>먹짱을 위한 맛집 코스</div>
-                    </Stack>
-                    <Stack
-                        direction="column"
-                        weight={1}>
-                        <img src="/images/homePageImg/seasonedChicken.png" alt="양념치킨" weight={1} width={190} height={180} />
-                        <div style={{ textAlign: 'center' }}>오늘 야식은 이거!</div>
-                    </Stack>
-                </Stack>
-                <Drawer
-                    anchor='left'
-                >{list()}</Drawer>
+                <Box
+                    width='100%'>
+                    <Tabs
+                        sx={{ paddingTop: 3, paddingBottom: 1 }}
+                        TabIndicatorProps={{ style: { backgroundColor: 'orange' } }}
+                        textColor='inherit'
+                        variant="fullWidth"
+                        value={value}
+                        onChange={handleToptab}>
+                        <Tab
+                            value="one"
+                            label="메인">
+                        </Tab>
+                        <Tab
+                            value="two"
+                            label="시장정보">
+                        </Tab>
+                        <Tab
+                            value="three"
+                            label="편의시설">
+                        </Tab>
+                    </Tabs>
+                    <TabPanel value={value} index="one">
+                        <Box>
+                            <div style={{ fontSize: 17, fontWeight: 'bold', marginBottom: 11 }}>
+                                현재 진행중인 이벤트
+                            </div>
+                            <img src="./images/homePageImg/fruitSale.png" alt="설연휴 세일" />
+                            <Grid container mt={3}>
+                                <Grid item xs>
+                                    <div style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 15 }}>추천 코스 안내</div>
+                                </Grid>
+                                <Grid item>
+                                    <ArrowForward />
+                                </Grid>
+                            </Grid>
+                            <Stack
+                                direction="row"
+                                weight={2}>
+                                <Stack
+                                    direction="column"
+                                    weight={1}>
+                                    <img src="/images/homePageImg/tteokbokki.png" alt="떡볶이" width={190} height={180} />
+                                    <div style={{ textAlign: 'center' }}>먹짱을 위한 맛집 코스</div>
+                                </Stack>
+                                <Stack
+                                    direction="column"
+                                    weight={1}>
+                                    <img src="/images/homePageImg/seasonedChicken.png" alt="양념치킨" weight={1} width={190} height={180} />
+                                    <div style={{ textAlign: 'center' }}>오늘 야식은 이거!</div>
+                                </Stack>
+                            </Stack>
+                        </Box>
+                    </TabPanel>
+                </Box>
             </Box>
         </Container>
     );

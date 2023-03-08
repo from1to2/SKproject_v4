@@ -1,71 +1,91 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from "./productSearch.module.css";
 import Product from "./Product"
-import { Box, Button, Container, TextField, Grid } from '@mui/material';
+import { Box, Container, TextField, IconButton, AppBar, Toolbar, Typography, ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
+import { ArrowBack, Search } from '@mui/icons-material';
 
 
 const ProductSearch = () => {
     const navigate = useNavigate();
     const [product, setProduct] = useState("");
-    const goHome = () => {
+    const goToHome = () => {
         navigate('/');
     }
     const onProductSearch = (e) => {
         setProduct(e.target.value);
     }
-    const SearchProduct = () => {
-
-    }
     const findProduct = Product.filter((item) =>
         item.title.includes(product)
     )
     return (
-        <Container component="main" maxWidth="xs" >
+        <Container component="main" maxWidth="xs" sx={{ paddingLeft: "0", paddingRight: "0" }} >
             <Box
-                className={styles.searchframe}
-                sx={{
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    height: "675px"
-                }}>
-                <Grid container>
-                    <Grid item>
-                        <Button
-                            className={styles.backButton}
-                            onClick={goHome}
-                            variant="outlined">Back</Button>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField
-                            type="text"
-                            onChange={onProductSearch}
-                            placeholder='상품명을 입력해주세요!'
-                            variant="outlined"
+                display="flex"
+                flexDirection="column">
+                <AppBar
+                    color='warning'>
+                    <Toolbar>
+                        <IconButton
                             size='small'
-                            required />
-                    </Grid>
-                    <Grid item xs={3}>
-                        <Button
-                            onClick={SearchProduct}
-                            variant="outlined">검색</Button>
-                    </Grid>
-                </Grid>
-                <p>검색 결과:{product}</p>
+                            aria-label='back'
+                            sx={{ pr: '1em' }}
+                            onClick={goToHome}>
+                            <ArrowBack />
+                        </IconButton>
+                        <TextField
+                            placeholder='검색어를 입력해주세요'
+                            onChange={onProductSearch}
+                            value={product || ""}
+                            sx={{ bgcolor: '#CCCCCC', borderRadius: '0.5em', border: '1px' }}
+                            fullWidth
+                            InputProps={{
+                                startAdornment: <IconButton position='start'><Search /></IconButton>
+                            }}>
+                        </TextField>
+                    </Toolbar>
+                </AppBar>
+                <Box
+                    sx={{ paddingTop: "3em" }}>
+                    <Typography variant='p' sx={{ fontSize: "1em" }}>
+                        검색 결과:{product}
+                    </Typography>
+                </Box>
                 <div>
-                    {product.length === null ? setProduct(<div>검색어를 입력하세요</div>) : findProduct.map((item) =>
-                        <Grid container spacing={2} key={item.title}>
-                            <Grid item xs={6} >
-                                <div>
-                                    <img src={item.poster} alt="그림" style={{ width: 150, height: 75 }} />
-                                    <div>{item.title}</div>
-                                </div>
-                            </Grid>
-                        </Grid>
-                    )}
+                    {product.length === null ?
+                        setProduct(<div>검색어를 입력하세요</div>) :
+                        <ImageList sx={{ width: 300, }} cols={2} rowHeight={100}>
+                            {findProduct.map((item) =>
+                                <ImageListItem key={item.title}>
+                                    <Box>
+                                        <img
+                                            src={item.poster}
+                                            alt="그림"
+                                            style={{
+                                                width: 150,
+                                                height: 100,
+                                                borderRadius: '0.5em'
+                                            }} />
+                                        <ImageListItemBar
+                                            title={item.title}
+                                            sx={{ height: '5' }}>
+                                        </ImageListItemBar>
+                                    </Box>
+                                </ImageListItem>
+                            )}
+                        </ImageList>
+                        // : findProduct.map((item) =>
+                        // <Grid container spacing={2} key={item.title}>
+                        //     <Grid item xs={6} >
+                        //         <Box>
+                        //             <img src={item.poster} alt="그림" style={{ width: 150, height: 75, borderRadius: '0.5em' }} />
+                        //             <Typography sx={{ fontSize: '0.9em' }}>{item.title}</Typography>
+                        //         </Box>
+                        //     </Grid>
+                        // </Grid>
+                    }
                 </div>
             </Box>
-        </Container>
+        </Container >
     );
 };
 
