@@ -43,13 +43,14 @@ const MyOrderHistory = () => {
         navigate("/Userprofile")
     }
     return (
-        <Container component="main" maxWidth="xs" sx={{ paddingLeft: "0 !important" }} >
+        <Container component="main" maxWidth="xs" sx={{ paddingLeft: '0', paddingRight: '0' }} >
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center'
             }}>
-                <AppBar>
+                <AppBar
+                    color='inherit'>
                     <Toolbar>
                         <>
                             <IconButton
@@ -156,7 +157,6 @@ const MyOrderHistory = () => {
             {/* 접수된 주문 */}
             <TabPanel value={value} index="one">
                 <Box
-                    width="100%"
                     sx={{ border: "1px solid #E0E0E0", boxShadow: "0 0 6px", marginBottom: 2, padding: 1 }}>
                     <Grid container>
                         <Grid item xs>
@@ -176,7 +176,6 @@ const MyOrderHistory = () => {
                     <Button variant='outlined'>전화</Button>
                 </Box>
                 <Box
-                    width="100%"
                     sx={{ border: "1px solid #E0E0E0", boxShadow: "0 0 6px", marginBottom: 2, padding: 1 }}>
                     <Grid container>
                         <Grid item xs>
@@ -196,7 +195,6 @@ const MyOrderHistory = () => {
                     <Button variant='outlined'>전화</Button>
                 </Box>
                 <Box
-                    width="100%"
                     sx={{ border: "1px solid #E0E0E0", boxShadow: "0 0 6px", padding: 1 }}>
                     <Grid container>
                         <Grid item xs>

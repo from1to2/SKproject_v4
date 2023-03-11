@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
 const { kakao } = window;
 const Map = () => {
-    const [location, setLocation] = useState({
+  const [location, setLocation] = useState({
     getLatitude: 0,
     getLongitude: 0,
   });
@@ -34,15 +33,16 @@ const Map = () => {
     });
     marker.setMap(map);
   }, [location.getLatitude, location.getLongitude]);
-    return (
-        <div>
-            <div id="map" style={{
-                width: "350px",
-                height: "350px",
-                padding: "5px"}
-             }></div>
-        </div>
-    );
+  return (
+    <div>
+      <div id="map" style={{
+        width: "350px",
+        height: "350px",
+        padding: "5px"
+      }
+      }></div>
+    </div>
+  );
 };
 
 export default Map;

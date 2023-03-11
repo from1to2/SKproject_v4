@@ -32,7 +32,8 @@ const Settings = () => {
                     flexDirection: "column",
                     alignItems: "center"
                 }}>
-                <AppBar>
+                <AppBar
+                    color='inherit'>
                     <Toolbar>
                         <>
                             <IconButton

@@ -32,7 +32,8 @@ const FavoriteStores = () => {
                     flexDirection: "column",
                     alignItems: "center"
                 }}>
-                <AppBar>
+                <AppBar
+                    color='inherit'>
                     <Toolbar>
                         <>
                             <IconButton

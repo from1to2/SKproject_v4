@@ -1,4 +1,4 @@
-import { Menu, HomeOutlined, ContentCopyOutlined, NotificationsNoneOutlined, BookmarkBorderOutlined, SettingsOutlined, AccountCircleOutlined, AccountCircleRounded, CloseRounded } from '@mui/icons-material';
+import { Menu, HomeOutlined, ContentCopyOutlined, NotificationsNoneOutlined, BookmarkBorderOutlined, SettingsOutlined, AccountCircle, AccountCircleOutlined, CloseRounded } from '@mui/icons-material';
 import { Avatar, AppBar, Button, Box, Container, Divider, Drawer, Grid, IconButton, List, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography, TextField, Stack, Switch } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -38,13 +38,15 @@ const Userprofile = () => {
             maxWidth="xs"
             sx={{
                 paddingLeft: "0",
-                paddingRight: "0"
+                paddingRight: "0",
+                width: "100%"
             }}>
             <Box
                 display="flex"
                 flexDirection="column"
                 alignItems="center">
-                <AppBar>
+                <AppBar
+                    color='inherit'>
                     <Toolbar>
                         <>
                             <IconButton
@@ -135,84 +137,93 @@ const Userprofile = () => {
                             }}>저장</Button>
                     </Toolbar>
                 </AppBar>
-                <Avatar sx={{
-                    marginTop: "3em",
-                    width: 40,
-                    height: 40,
-                }}>
-                    <AccountCircleRounded />
-                </Avatar>
                 <Box
-                    component="form"
                     sx={{
-                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                        border: "1px solid #E0E0E0",
+                        boxShadow: "0 0 6px",
+                        marginTop: "3.3em",
+                        width: "100%",
+                        borderLeft: '0',
+                        borderRight: '0'
                     }}>
-                    <TextField
-                        label="My Nickname"
-                        onChange={changeMyNickname}
-                        value={nickname || ""}
-                        InputProps={{
-                            endAdornment: <IconButton
-                                position="end"
-                                onClick={deleteMyNickname}>
-                                <CloseRounded />
-                            </IconButton>
-                        }}>
-                    </TextField>
-                    <Button
-                        // onClick={userIdSave}
-                        variant="outlined"
+                    <Box
+                        sx={{ textAlign: 'center' }}>
+                        <Avatar
+                            sx={{
+                                marginTop: '1em',
+                                marginLeft: "8em",
+                                marginBottom: '1em'
+                            }}>
+                            <AccountCircle />
+                        </Avatar>
+                    </Box>
+                    <Box
+                        textAlign='center'>
+                        <TextField
+                            label="My Nickname"
+                            onChange={changeMyNickname}
+                            value={nickname || ""}
+                            sx={{ width: "71%" }}
+                            InputProps={{
+                                endAdornment: <IconButton
+                                    position="end"
+                                    onClick={deleteMyNickname}>
+                                    <CloseRounded />
+                                </IconButton>
+                            }}>
+                        </TextField>
+                        <Button
+                            // onClick={userIdSave}
+                            variant="outlined"
+                            sx={{
+                                marginTop: "0.9em",
+                                marginLeft: "0.8em",
+                                color: "black",
+                                borderColor: "black",
+                                fontSize: "0.8em"
+                            }}>저장</Button>
+                    </Box>
+                    <Stack
+                        direction="row"
                         sx={{
-                            marginTop: "1.3em",
-                            color: "black",
-                            borderColor: "black"
-                        }}>저장</Button>
-                </Box>
-                <Stack
-                    direction="row"
-                    sx={{
-                        position: "relative",
-                        right: "4em",
-                        marginTop: "0.5em"
-                    }}>
+                            position: "relative",
+                            marginTop: "0.5em",
+                            marginLeft: "1em",
+                            marginBottom: '0.2em'
+                        }}>
+                        <Typography
+                            variant='h6'
+                            sx={{
+                                fontSize: "1em",
+                                fontWeight: "bold",
+                                marginRight: '0.5em'
+                            }}>
+                            이메일
+                        </Typography>
+                        <Typography
+                            variant="p"
+                            sx={{
+                                color: "gray"
+                            }}>
+                            user@sungkyul.ac.kr
+                        </Typography>
+                    </Stack>
                     <Typography
                         variant='h6'
                         sx={{
-                            position: "relative",
-                            fontSize: "1em",
                             fontWeight: "bold",
-                            marginRight: "0.5em"
-                        }}>
-                        이메일
-                    </Typography>
-                    <Typography
-                        variant="p"
-                        sx={{
-                            color: "gray"
-                        }}>
-                        user@sungkyul.ac.kr
-                    </Typography>
-                </Stack>
-                <Typography
-                    variant='h6'
-                    sx={{
-                        position: "relative",
-                        fontWeight: "bold",
-                        fontSize: "1em",
-                        right: "7.7em"
-                    }}>휴대폰 번호</Typography>
-                <Grid container xs={12}>
-                    <Grid item xs={9}>
+                            fontSize: "1em",
+                            marginLeft: "1em",
+                            marginBottom: '0.2em'
+                        }}>휴대폰 번호</Typography>
+                    <Box
+                        sx={{ textAlign: 'center' }}>
                         <TextField
                             label="휴대폰*"
                             sx={{
-                                width: "16em",
-                                marginLeft: "1em",
+                                width: "71%",
                                 right: "0.1em"
-                            }}>
-                        </TextField>
-                    </Grid>
-                    <Grid item xs={3}>
+                            }} />
                         <Button
                             variant="outlined"
                             sx={{
@@ -222,47 +233,56 @@ const Userprofile = () => {
                                 borderColor: "black",
                                 fontSize: "0.8em"
                             }}>
-                            재인증
+                            인증
                         </Button>
-                    </Grid>
-                </Grid>
-                <Typography
-                    variant='h6'
-                    sx={{
-                        position: "relative",
-                        fontWeight: "bold",
-                        fontSize: "1em",
-                        right: "7.2em",
-                        marginTop: "0.6em"
-                    }}>비밀번호 변경</Typography>
-                <TextField
-                    label="현재 비밀번호"
-                    sx={{
-                        width: "21em",
-                        left: "0.2em"
-                    }} />
-                <TextField
-                    label="신규 비밀번호"
-                    sx={{
-                        width: "21em",
-                        left: "0.2em"
-                    }} />
-                <Button
-                    variant='outlined'
-                    justify="flex-start"
-                    sx={{
-                        color: 'black',
-                        borderColor: "black",
-                        marginTop: "0.6em",
-                        left: "9.9em"
-                    }}
-                >변경</Button>
+                    </Box>
+                    <Typography
+                        variant='h6'
+                        sx={{
+                            fontWeight: "bold",
+                            fontSize: "1em",
+                            marginTop: "0.6em",
+                            marginLeft: "1em"
+                        }}>비밀번호 변경</Typography>
+                    <Box
+                        sx={{ textAlign: 'center' }}>
+                        <TextField
+                            label="현재 비밀번호"
+                            sx={{
+                                width: "93%",
+                                left: "0.2em"
+                            }} />
+                        <TextField
+                            label="신규 비밀번호"
+                            sx={{
+                                width: "93%",
+                                left: "0.2em"
+                            }} />
+                    </Box>
+                    <Box
+                        sx={{ textAlign: 'center' }}>
+                        <Button
+                            variant='outlined'
+                            justify="flex-start"
+                            sx={{
+                                color: 'black',
+                                borderColor: "black",
+                                marginTop: "0.6em",
+                                marginBottom: '1em'
+                            }}>
+                            변경
+                        </Button>
+                    </Box>
+
+                </Box>
                 <Box
                     sx={{
                         border: "1px solid #E0E0E0",
                         boxShadow: "0 0 6px",
                         marginTop: "0.6em",
-                        width: "100%"
+                        width: "100%",
+                        borderLeft: '0',
+                        borderRight: '0'
                     }}>
                     <Typography
                         variant='p'

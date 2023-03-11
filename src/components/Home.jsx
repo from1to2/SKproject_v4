@@ -45,7 +45,8 @@ const Home = () => {
                 display: "flex",
                 alignItems: 'center'
             }}>
-                <AppBar>
+                <AppBar
+                    color='inherit'>
                     <Toolbar>
                         <>
                             <IconButton
@@ -157,10 +158,10 @@ const Home = () => {
                             <div style={{ fontSize: 17, fontWeight: 'bold', marginBottom: 11 }}>
                                 현재 진행중인 이벤트
                             </div>
-                            <img src="./images/homePageImg/fruitSale.png" alt="설연휴 세일" />
-                            <Grid container mt={3}>
+                            <img src="./images/homePageImg/fruitSale.png" alt="설연휴 세일" style={{ width: '100%', borderRadius: '0.5em' }} />
+                            <Grid container mt={1}>
                                 <Grid item xs>
-                                    <div style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 15 }}>추천 코스 안내</div>
+                                    <div style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 10 }}>추천 코스 안내</div>
                                 </Grid>
                                 <Grid item>
                                     <ArrowForward />
@@ -168,17 +169,15 @@ const Home = () => {
                             </Grid>
                             <Stack
                                 direction="row"
-                                weight={2}>
+                                sx={{ width: '100%' }}>
                                 <Stack
-                                    direction="column"
-                                    weight={1}>
-                                    <img src="/images/homePageImg/tteokbokki.png" alt="떡볶이" width={190} height={180} />
+                                    direction="column">
+                                    <img src="/images/homePageImg/tteokbokki.png" alt="떡볶이" width="100%" height="80%" />
                                     <div style={{ textAlign: 'center' }}>먹짱을 위한 맛집 코스</div>
                                 </Stack>
                                 <Stack
-                                    direction="column"
-                                    weight={1}>
-                                    <img src="/images/homePageImg/seasonedChicken.png" alt="양념치킨" weight={1} width={190} height={180} />
+                                    direction="column">
+                                    <img src="/images/homePageImg/seasonedChicken.png" alt="양념치킨" width="100%" height="80%" />
                                     <div style={{ textAlign: 'center' }}>오늘 야식은 이거!</div>
                                 </Stack>
                             </Stack>

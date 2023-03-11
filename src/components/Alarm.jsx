@@ -31,7 +31,8 @@ const Alarm = () => {
                 flexDirection: 'column',
                 alignItems: 'center'
             }}>
-                <AppBar>
+                <AppBar
+                    color='inherit'>
                     <Toolbar>
                         <>
                             <IconButton
