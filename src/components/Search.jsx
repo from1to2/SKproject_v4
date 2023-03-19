@@ -3,7 +3,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { AppBar, Box, Container, Toolbar, Typography, Grid, TextField, IconButton } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./search_style.css"
 import marketlist from './Marketlist';
 
 const Search = () => {
@@ -23,7 +22,8 @@ const Search = () => {
             <Box
                 display="flex"
                 flexDirection="column">
-                <AppBar>
+                <AppBar
+                    color='inherit'>
                     <Toolbar>
                         <Typography
                             variant='h5'
@@ -39,7 +39,7 @@ const Search = () => {
                         <IconButton
                             size='small'
                             onClick={goHome}
-                            sx={{ marginTop: '0.7em' }}>
+                            sx={{ marginTop: '0.5em', marginLeft: '0.7em' }}>
                             <ArrowBack />
                         </IconButton>
                     </Grid>
@@ -53,7 +53,7 @@ const Search = () => {
                                 bgcolor: '#CCCCCC',
                                 borderRadius: '0.5em',
                                 border: '1px',
-                                width: "100%"
+                                width: "99%"
                             }}
                             required
                             InputProps={{
@@ -83,21 +83,6 @@ const Search = () => {
                 </Box>
             </Box>
         </Container>
-        // <div>
-        //     <fieldset className='searchFrame'>
-        //         <div className="div">내 주변 시장 찾기</div>
-        //         <button className='backButton' onClick={goHome}>back</button>
-        //         <input className='search' required type="text" onChange={onSearch} />
-        //         <button onClick={onSubmit}>search</button>
-        //         <MainPage name={searchWord}>{searchWord}</MainPage>
-        //         {searchWord.length === 0 ?
-        //             <div>검색어를 입력하세요</div> :
-        //             <div>{findMarket.map(
-        //                 (item) => <div key={item}>{item}
-        //                 </div>)}
-        //             </div>}
-        //     </fieldset>
-        // </div>
     );
 };
 

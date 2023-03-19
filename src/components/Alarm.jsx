@@ -106,10 +106,15 @@ const Alarm = () => {
                             </Drawer>
                         </>
                         <Typography
-                            variant='h5'
+                            variant='h6'
                             noWrap
                             component="div"
-                            sx={{ flexGrow: 1, textAlign: 'center', marginRight: '1em' }}>
+                            sx={{
+                                flexGrow: 1,
+                                textAlign: 'center',
+                                marginRight: '1em',
+                                fontSize: '1.5em'
+                            }}>
                             알림<br />
                             <div style={{ fontSize: "14px" }}>안양 중앙 시장</div>
                         </Typography>

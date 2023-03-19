@@ -105,13 +105,14 @@ const Settings = () => {
                             </Drawer>
                         </>
                         <Typography
-                            variant='h5'
+                            variant='h6'
                             noWrap
                             component="div"
                             sx={{
                                 flexGrow: 1,
                                 textAlign: 'center',
-                                marginRight: 3
+                                marginRight: 3,
+                                fontSize: '1em'
                             }}>
                             환경 설정<br />
                         </Typography>

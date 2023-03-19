@@ -2,10 +2,12 @@ import { AppBar, Box, Container, IconButton, Stack, Toolbar, Typography, Grid, D
 import { Menu, Search, ArrowForward, ContentCopyOutlined, NotificationsNoneOutlined, BookmarkBorderOutlined, SettingsOutlined, AccountCircleOutlined } from "@mui/icons-material"
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/Home.css';
 
 const Home = () => {
     const navigate = useNavigate();
     const [value, setValue] = useState('one');
+    const [open, setOpen] = useState(false);
     const handleToptab = (e, newValue) => {
         setValue(newValue);
     }
@@ -37,24 +39,32 @@ const Home = () => {
             )}
         </div>)
     }
-    const [open, setOpen] = useState(false);
     return (
-        <Container component="main" maxWidth="xs" sx={{ paddingLeft: '0', paddingRight: "0" }}>
-            <Box sx={{
-                flexDirection: 'column',
-                display: "flex",
-                alignItems: 'center'
+        <Container
+
+            component="main"
+            maxWidth="xs"
+            sx={{
+                paddingLeft: '0',
+                paddingRight: '0'
             }}>
+            <Box
+                sx={{
+                    flexDirection: 'column',
+                    display: "flex",
+                    alignItems: 'center'
+                }}>
                 <AppBar
                     color='inherit'>
                     <Toolbar>
                         <>
                             <IconButton
+                                className="icon_button"
                                 size='large'
-                                edge='start'
                                 color='inherit'
+                                sx={{ mr: "1.2em" }}
+                                edge='start'
                                 aria-label='open drawer'
-                                sx={{ mr: 2 }}
                                 onClick={() => setOpen(true)}>
                                 <Menu />
                             </IconButton>
@@ -64,7 +74,11 @@ const Home = () => {
                                 onClose={() => setOpen(false)}
                                 // 주의 꼭 Temporary 값으로 설정해야만 click 이벤트 값을 받아서 토글 형식으로 유지 가능.
                                 variant="temporary">
-                                <Typography p={3} variant="h5" component="div" textAlign="center">
+                                <Typography
+                                    p={3}
+                                    variant="h5"
+                                    component="div"
+                                    textAlign="center">
                                     My page
                                 </Typography>
                                 <Divider />
@@ -116,10 +130,14 @@ const Home = () => {
                             </Drawer>
                         </>
                         <Typography
-                            variant='h5'
+                            variant='h6'
                             noWrap
                             component="div"
-                            sx={{ flexGrow: 1, textAlign: 'center', marginRight: "1em" }}>
+                            sx={{
+                                flexGrow: 1,
+                                textAlign: 'center',
+                                marginRight: "1em",
+                            }}>
                             홈페이지
                         </Typography>
                         <IconButton
@@ -135,7 +153,9 @@ const Home = () => {
                     width='100%'>
                     <Tabs
                         sx={{ paddingTop: 3, paddingBottom: 1 }}
-                        TabIndicatorProps={{ style: { backgroundColor: 'orange' } }}
+                        TabIndicatorProps={{
+                            style: { backgroundColor: 'orange' }
+                        }}
                         textColor='inherit'
                         variant="fullWidth"
                         value={value}
@@ -155,13 +175,13 @@ const Home = () => {
                     </Tabs>
                     <TabPanel value={value} index="one">
                         <Box>
-                            <div style={{ fontSize: 17, fontWeight: 'bold', marginBottom: 11 }}>
+                            <div style={{ fontSize: "1em", fontWeight: 'bold', marginBottom: 11 }}>
                                 현재 진행중인 이벤트
                             </div>
                             <img src="./images/homePageImg/fruitSale.png" alt="설연휴 세일" style={{ width: '100%', borderRadius: '0.5em' }} />
                             <Grid container mt={1}>
                                 <Grid item xs>
-                                    <div style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 10 }}>추천 코스 안내</div>
+                                    <div style={{ fontSize: "1em", fontWeight: 'bold', marginBottom: 10 }}>추천 코스 안내</div>
                                 </Grid>
                                 <Grid item>
                                     <ArrowForward />
@@ -181,6 +201,159 @@ const Home = () => {
                                     <div style={{ textAlign: 'center' }}>오늘 야식은 이거!</div>
                                 </Stack>
                             </Stack>
+                        </Box>
+                    </TabPanel>
+                    <TabPanel value={value} index="two">
+                        <Box
+                            p={2}
+                            position='relative'
+                            bottom='1em'>
+                            <Typography
+                                variant="h6"
+                                component='div'
+                                sx={{
+                                    fontSize: "1.2em",
+                                    fontWeight: 'bold'
+                                }}>
+                                취급 품목(대표 품목)
+                            </Typography>
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '0.8em',
+                                    marginBottom: '1em'
+                                }}>
+                                식품류, 의류, 음식업, 생활용품
+                            </Typography>
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '1.2em',
+                                    fontWeight: 'bold'
+                                }}>
+                                시장 오시는 길
+                            </Typography>
+                            <img src='/images/marketInfo/getDirection.png' alt='시장 오시는 길' width='100%'></img>
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '1em'
+                                }}>
+                                경기도 안양시 주소주소
+                            </Typography>
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '1.2em',
+                                    fontWeight: 'bold'
+                                }}>
+                                주차장 위치
+                            </Typography>
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '1em'
+                                }}>
+                                경기도 안양시 주소주소
+                            </Typography>
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '1.2em',
+                                    fontWeight: 'bold'
+                                }}>
+                                주차 요금
+                            </Typography>
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '1em'
+                                }}>
+                                월-금요일 0시~0시 이용시 90분 무료
+                            </Typography>
+                        </Box>
+                    </TabPanel><br />
+                    <TabPanel value={value} index="three">
+                        <Box
+                            position='relative'
+                            bottom='2.5em'
+                            p={2}>
+                            <img src="/images/marketInfo/getDirection.png" alt="주차장" width='100%' />
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '1.2em',
+                                    fontWeight: 'bold'
+                                }}>
+                                자전거 보관소
+                            </Typography>
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '1em'
+                                }}>
+                                주변에 있는 자전거 보관소 위치 제공
+                            </Typography>
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '1.2em',
+                                    fontWeight: 'bold'
+                                }}>
+                                물품 보관소
+                            </Typography>
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '1em'
+                                }}>
+                                주변 물품 보관소 위치 정보 제공
+                            </Typography>
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '1.2em',
+                                    fontWeight: 'bold'
+                                }}>
+                                주차장 위치
+                            </Typography>
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '1em'
+                                }}>
+                                안양시 만안구 주소주소
+                            </Typography>
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '1.2em',
+                                    fontWeight: 'bold'
+                                }}>
+                                주차 요금
+                            </Typography>
+                            <Typography
+                                variant='h6'
+                                component='div'
+                                sx={{
+                                    fontSize: '1em'
+                                }}>
+                                월~금요일 0시~0시 이용시 90분 무료
+                            </Typography>
                         </Box>
                     </TabPanel>
                 </Box>

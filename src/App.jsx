@@ -11,6 +11,7 @@ import Alarm from "./components/Alarm";
 import FavoriteStores from "./components/FavoriteStores";
 import Settings from "./components/Settings";
 import Userprofile from "./components/Userprofile";
+import SampleBase from "./components/SampleBase";
 const App = () => {
   return <div>
     <Routes>
@@ -25,6 +26,7 @@ const App = () => {
       <Route path="/FavoriteStores" component={FavoriteStores} element={<FavoriteStores />} />
       <Route path="/Settings" component={Settings} element={<Settings />} />
       <Route path="/Userprofile" component={Userprofile} element={<Userprofile />} />
+      <Route path="/SampleBase" component={SampleBase} element={<SampleBase />} />
     </Routes>
   </div>;
 }

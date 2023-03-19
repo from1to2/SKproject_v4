@@ -43,14 +43,14 @@ const MyOrderHistory = () => {
         navigate("/Userprofile")
     }
     return (
-        <Container component="main" maxWidth="xs" sx={{ paddingLeft: '0', paddingRight: '0' }} >
+        <Container component="main" maxWidth="xs" sx={{ paddingLeft: '0' }} >
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center'
             }}>
                 <AppBar
-                    color='inherit'>
+                    color='default'>
                     <Toolbar>
                         <>
                             <IconButton
@@ -157,6 +157,7 @@ const MyOrderHistory = () => {
             {/* 접수된 주문 */}
             <TabPanel value={value} index="one">
                 <Box
+                    width='100%'
                     sx={{ border: "1px solid #E0E0E0", boxShadow: "0 0 6px", marginBottom: 2, padding: 1 }}>
                     <Grid container>
                         <Grid item xs>
@@ -171,11 +172,33 @@ const MyOrderHistory = () => {
                     <Typography variant='h6' component="div" sx={{ color: 'gray', fontSize: "13px" }}>
                         주문한 물품1, 주문한 물품2
                     </Typography>
-                    <Button variant='outlined' sx={{ marginRight: 2 }}>주문 취소</Button>
-                    <Button variant='outlined' sx={{ marginRight: 2 }}>가게 정보</Button>
-                    <Button variant='outlined'>전화</Button>
+                    <Button
+                        variant='outlined'
+                        sx={{
+                            marginRight: 2,
+                            color: "black",
+                            borderColor: 'black'
+                        }}>
+                        주문 취소
+                    </Button>
+                    <Button
+                        variant='outlined'
+                        sx={{
+                            marginRight: 2,
+                            color: "black",
+                            borderColor: 'black'
+                        }}>
+                        가게 정보
+                    </Button>
+                    <Button
+                        variant='outlined'
+                        sx={{
+                            color: "black",
+                            borderColor: 'black'
+                        }}>전화</Button>
                 </Box>
                 <Box
+                    width='100%'
                     sx={{ border: "1px solid #E0E0E0", boxShadow: "0 0 6px", marginBottom: 2, padding: 1 }}>
                     <Grid container>
                         <Grid item xs>
@@ -190,11 +213,29 @@ const MyOrderHistory = () => {
                     <Typography variant='h6' component="div" sx={{ color: 'gray', fontSize: "13px" }}>
                         주문한 물품1, 주문한 물품2
                     </Typography>
-                    <Button variant='outlined' sx={{ marginRight: 2 }}>주문 취소</Button>
-                    <Button variant='outlined' sx={{ marginRight: 2 }}>가게 정보</Button>
-                    <Button variant='outlined'>전화</Button>
+                    <Button
+                        variant='outlined'
+                        sx={{
+                            marginRight: 2,
+                            color: "black",
+                            borderColor: 'black'
+                        }}>주문 취소</Button>
+                    <Button
+                        variant='outlined'
+                        sx={{
+                            marginRight: 2,
+                            color: "black",
+                            borderColor: 'black'
+                        }}>가게 정보</Button>
+                    <Button
+                        variant='outlined'
+                        sx={{
+                            color: "black",
+                            borderColor: 'black'
+                        }}>전화</Button>
                 </Box>
                 <Box
+                    width='100%'
                     sx={{ border: "1px solid #E0E0E0", boxShadow: "0 0 6px", padding: 1 }}>
                     <Grid container>
                         <Grid item xs>
@@ -209,9 +250,26 @@ const MyOrderHistory = () => {
                     <Typography variant='h6' component="div" sx={{ color: 'gray', fontSize: "13px" }}>
                         주문한 물품1, 주문한 물품2
                     </Typography>
-                    <Button variant='outlined' sx={{ marginRight: 2 }}>주문 취소</Button>
-                    <Button variant='outlined' sx={{ marginRight: 2 }}>가게 정보</Button>
-                    <Button variant='outlined'>전화</Button>
+                    <Button
+                        variant='outlined'
+                        sx={{
+                            marginRight: 2,
+                            color: "black",
+                            borderColor: 'black'
+                        }}>주문 취소</Button>
+                    <Button
+                        variant='outlined'
+                        sx={{
+                            marginRight: 2,
+                            color: "black",
+                            borderColor: 'black'
+                        }}>가게 정보</Button>
+                    <Button
+                        variant='outlined'
+                        sx={{
+                            color: "black",
+                            borderColor: 'black'
+                        }}>전화</Button>
                 </Box>
             </TabPanel>
             {/* 완료 주문 */}
@@ -234,10 +292,19 @@ const MyOrderHistory = () => {
                     </Typography>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
-                            <Button variant='outlined' sx={{ marginRight: 2, width: '100%' }}>가게 정보</Button>
+                            <Button variant='outlined' sx={{
+                                marginRight: 2,
+                                width: '100%',
+                                color: "black",
+                                borderColor: 'black'
+                            }}>가게 정보</Button>
                         </Grid>
                         <Grid item xs={6}>
-                            <Button variant='outlined' sx={{ width: '100%' }}>전화</Button>
+                            <Button variant='outlined' sx={{
+                                width: '100%',
+                                color: "black",
+                                borderColor: 'black'
+                            }}>전화</Button>
                         </Grid>
                     </Grid>
                 </Box>
@@ -259,10 +326,19 @@ const MyOrderHistory = () => {
                     </Typography>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
-                            <Button variant='outlined' sx={{ marginRight: 2, width: '100%' }}>가게 정보</Button>
+                            <Button variant='outlined' sx={{
+                                marginRight: 2,
+                                width: '100%',
+                                color: "black",
+                                borderColor: 'black'
+                            }}>가게 정보</Button>
                         </Grid>
                         <Grid item xs={6}>
-                            <Button variant='outlined' sx={{ width: '100%' }}>전화</Button>
+                            <Button variant='outlined' sx={{
+                                width: '100%',
+                                color: "black",
+                                borderColor: 'black'
+                            }}>전화</Button>
                         </Grid>
                     </Grid>
                 </Box>
@@ -284,10 +360,19 @@ const MyOrderHistory = () => {
                     </Typography>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
-                            <Button variant='outlined' sx={{ marginRight: 2, width: '100%' }}>가게 정보</Button>
+                            <Button variant='outlined' sx={{
+                                marginRight: 2,
+                                width: '100%',
+                                color: "black",
+                                borderColor: 'black'
+                            }}>가게 정보</Button>
                         </Grid>
                         <Grid item xs={6}>
-                            <Button variant='outlined' sx={{ width: '100%' }}>전화</Button>
+                            <Button variant='outlined' sx={{
+                                width: '100%',
+                                color: "black",
+                                borderColor: 'black'
+                            }}>전화</Button>
                         </Grid>
                     </Grid>
                 </Box>

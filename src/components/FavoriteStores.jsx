@@ -25,7 +25,7 @@ const FavoriteStores = () => {
         navigate("/Userprofile")
     }
     return (
-        <Container component="main" maxWidth="xs" sx={{ paddingLeft: "0 !important", paddingRight: "0 !important" }}>
+        <Container component="main" maxWidth="xs" sx={{ paddingLeft: "0 ", paddingRight: "0" }}>
             <Box
                 sx={{
                     display: "flex",
@@ -102,10 +102,15 @@ const FavoriteStores = () => {
                             </Drawer>
                         </>
                         <Typography
-                            variant='h5'
+                            variant='h6'
                             noWrap
                             component="div"
-                            sx={{ flexGrow: 1, textAlign: 'center', marginRight: '1em' }}>
+                            sx={{
+                                flexGrow: 1,
+                                textAlign: 'center',
+                                marginRight: '1em',
+                                fontSize: '1.5em'
+                            }}>
                             찜한 가게 목록<br />
                             <div style={{ fontSize: "14px" }}>안양 중앙 시장</div>
                         </Typography>
