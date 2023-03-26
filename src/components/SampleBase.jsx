@@ -1,17 +1,23 @@
 import { useState } from 'react';
-import db from './Firebase'
-import { collection, addDoc, getDocs, query, deleteDoc } from "firebase/firestore";
-import { doc } from 'firebase/firestore';
+import { db, storageRef } from './Firebase'
+import 'firebase/database'
+import { collection, addDoc, getDocs, query, deleteDoc, doc, getDoc } from "firebase/firestore";
+// import { updateDoc } from 'firebase/firestore';
+import { getStorage, ref, getDownloadURL, listAll } from 'firebase/storage'
+import 'firebase/compat/firestore';
+
 const SampleBase = () => {
+    const [Img, setImg] = useState('');
     const [userAge, setUserAge] = useState('');
     const [userName, setUserName] = useState('');
+    const usersCollectionRef = collection(db, "users");
     const getUserName = (e) => {
         setUserName(e.target.value);
     }
     const getUserAge = (e) => {
         setUserAge(e.target.value);
     }
-    const usersCollectionRef = collection(db, "users");
+
     const addData = async () => {
         try {
             const res = await addDoc(usersCollectionRef, {
@@ -36,13 +42,19 @@ const SampleBase = () => {
             console.log(err)
         }
     }
-    const deleteData = async (id) => {
+    const deleteData = async () => {
         try {
-            const dd = await deleteDoc(doc(db, "users", id));
+            console.log(doc(db, "sss", "ss"))
+            const dd = await deleteDoc(doc(db, "sss", "ss"));
             console.log(dd);
         } catch (err) {
             console.log(err);
         }
+    }
+    // const updataData = async () => {
+    //     const upData = await updateDoc(doc(db, "sss", "ss"))
+    // }
+    const getImg = () => {
 
     }
     return (
@@ -52,7 +64,10 @@ const SampleBase = () => {
                 <input type="text" placeholder='나이를 입력하세요' onChange={getUserAge}></input><br />
                 <button onClick={addData}>추가</button>
                 <button onClick={getData}>조회</button>
-                <button onClick={deleteData}>삭제</button>
+                <button onClick={deleteData}>삭제</button><br />
+                <img alt='그림'></img>
+                {console.log(Img)}
+                <button onClick={getImg}>이미지 가져오기</button>
             </fieldset>
         </div>
     );

@@ -41,7 +41,6 @@ const Home = () => {
     }
     return (
         <Container
-
             component="main"
             maxWidth="xs"
             sx={{
