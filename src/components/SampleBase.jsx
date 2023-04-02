@@ -1,13 +1,10 @@
 import { useState } from 'react';
-import { db, storageRef } from './Firebase'
+import { db } from './Firebase'
 import 'firebase/database'
-import { collection, addDoc, getDocs, query, deleteDoc, doc, getDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, query, deleteDoc, doc } from "firebase/firestore";
 // import { updateDoc } from 'firebase/firestore';
-import { getStorage, ref, getDownloadURL, listAll } from 'firebase/storage'
-import 'firebase/compat/firestore';
 
 const SampleBase = () => {
-    const [Img, setImg] = useState('');
     const [userAge, setUserAge] = useState('');
     const [userName, setUserName] = useState('');
     const usersCollectionRef = collection(db, "users");
@@ -31,7 +28,7 @@ const SampleBase = () => {
     };
     const getData = async () => {
         try {
-            const q = await query(usersCollectionRef)
+            const q = query(usersCollectionRef)
             const getData = await getDocs(q);
             const newData = getData.docs.map(doc => ({
                 //rest 문법
@@ -44,7 +41,6 @@ const SampleBase = () => {
     }
     const deleteData = async () => {
         try {
-            console.log(doc(db, "sss", "ss"))
             const dd = await deleteDoc(doc(db, "sss", "ss"));
             console.log(dd);
         } catch (err) {
@@ -66,7 +62,6 @@ const SampleBase = () => {
                 <button onClick={getData}>조회</button>
                 <button onClick={deleteData}>삭제</button><br />
                 <img alt='그림'></img>
-                {console.log(Img)}
                 <button onClick={getImg}>이미지 가져오기</button>
             </fieldset>
         </div>

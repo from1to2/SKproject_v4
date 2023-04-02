@@ -1,22 +1,54 @@
 import { ArrowBack, Close } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
-import { AppBar, Box, Container, Toolbar, Typography, Grid, TextField, IconButton } from '@mui/material';
-import React, { useState } from 'react';
+import { AppBar, Box, Container, Grid, IconButton, TextField, Toolbar, Typography } from '@mui/material';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import marketlist from './Marketlist';
+import { db } from './Firebase';
+import { doc, getDoc, query } from 'firebase/firestore';
+
 
 const Search = () => {
     const navigate = useNavigate();
-    const [searchWord, setsearchWord] = useState("");
+    const [searchWord, setsearchWord] = useState('');
+    const [marketList, setMarketList] = useState();
+    const marketArrayList = useMemo(() => [], []);
     const onSearch = (e) => {
         setsearchWord(e.target.value);
     }
     const goHome = () => {
         navigate('/');
     }
-    const findMarket = marketlist.filter((item) =>
+    const marketObjToArray = useCallback(() => {
+        for (let Objkey in marketList) {
+            if (marketList.hasOwnProperty(Objkey)) {
+                marketArrayList.push(marketList[Objkey]);
+            }
+        }
+
+        console.log(Date.now());
+    }, [marketList, marketArrayList])
+    const getMarketlist = useCallback(async () => {
+        try {
+            const docRef = query(doc(db, "Traditional MarketList", "AnyangMarketList"));
+            const docSnap = await getDoc(docRef);
+            setMarketList(docSnap.data());
+
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
+
+    //엔터키를 눌렀을 때 파이어베이스 데이터를 가져옴.
+    const entered = () => {
+        if (window.event.keyCode === 13) {
+            marketObjToArray();
+            getMarketlist();
+        }
+    }
+    // 검색 기능 구현
+    const FindMarket = marketArrayList.filter((item) =>
         item.includes(searchWord)
-    );
+    )
     return (
         <Container component='main' maxWidth='xs' sx={{ paddingLeft: "0", paddingRight: "0" }}>
             <Box
@@ -39,7 +71,7 @@ const Search = () => {
                         <IconButton
                             size='small'
                             onClick={goHome}
-                            sx={{ marginTop: '0.5em', marginLeft: '0.7em' }}>
+                            sx={{ marginTop: '0.5em' }}>
                             <ArrowBack />
                         </IconButton>
                     </Grid>
@@ -47,7 +79,8 @@ const Search = () => {
                         <TextField
                             size='medium'
                             onChange={onSearch}
-                            value={searchWord}
+                            onKeyUp={entered}
+                            value={typeof (searchWord) === 'object' ? '' : searchWord}
                             fullWidth
                             sx={{
                                 bgcolor: '#CCCCCC',
@@ -64,21 +97,22 @@ const Search = () => {
                     </Grid>
                 </Grid>
                 <Box>
-                    <Typography variant='body1'> 검색결과: {searchWord}</Typography>
+                    <div>검색결과: {searchWord}</div>
                 </Box>
                 <Box>
-                    {searchWord.length === null ?
-                        setsearchWord(<div>검색어를 입력하세요!</div>) :
+                    {searchWord.length == 0 ?
+                        setsearchWord(<Typography>검색어를 입력하세요!</Typography>) :
                         <Box>
-                            {findMarket.map((item) =>
-                                <Typography
+                            {FindMarket.map((item) =>
+                                <div
                                     key={item}
                                     variant='h6'
                                     sx={{
-                                        fontSize: "1em",
+                                        fontSize: '1em'
                                     }}>
                                     {item}
-                                </Typography>)}
+                                </div>
+                            )}
                         </Box>}
                 </Box>
             </Box>

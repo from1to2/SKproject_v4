@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 const { kakao } = window;
 const Map = () => {
+  const goToHome = () => {
+    navigate('/');
+  }
   const [location, setLocation] = useState({
     getLatitude: 0,
     getLongitude: 0,
@@ -17,9 +20,6 @@ const Map = () => {
   }
   function getError() {
     console.log("Error!");
-  }
-  const goToHome = () => {
-    navigate('/');
   }
   useEffect(() => {
     const container = document.getElementById("map");
@@ -39,14 +39,6 @@ const Map = () => {
       position: markerPosition
     });
     marker.setMap(map);
-
-    // let iwContent = `<div>${location.getLatitude, location.getLongitude}</div>`,
-    // const infowindow = new kakao.maps.InfoWindow({
-    //   map: map,
-    //   position: markerPosition,
-    //   content: 'infoWindow'
-    // })
-    // infowindow.open(map, marker);
   }, [location.getLatitude, location.getLongitude]);
   return (
     <Container
