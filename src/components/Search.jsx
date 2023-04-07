@@ -4,14 +4,16 @@ import { AppBar, Box, Container, Grid, IconButton, TextField, Toolbar, Typograph
 import React, { useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from './Firebase';
-import { doc, getDoc, query } from 'firebase/firestore';
+import { doc, getDoc, query, getDocs, collection } from 'firebase/firestore';
 
 
 const Search = () => {
+    const [details, setDetails] = useState();
     const navigate = useNavigate();
     const [searchWord, setsearchWord] = useState('');
     const [marketList, setMarketList] = useState();
     const marketArrayList = useMemo(() => [], []);
+    // const [specificMarket, setSpecificMarket] = useState("");
     const onSearch = (e) => {
         setsearchWord(e.target.value);
     }
@@ -24,15 +26,13 @@ const Search = () => {
                 marketArrayList.push(marketList[Objkey]);
             }
         }
-
-        console.log(Date.now());
     }, [marketList, marketArrayList])
     const getMarketlist = useCallback(async () => {
         try {
             const docRef = query(doc(db, "Traditional MarketList", "AnyangMarketList"));
             const docSnap = await getDoc(docRef);
             setMarketList(docSnap.data());
-
+            // console.log(docSnap);
         } catch (error) {
             console.log(error);
         }
@@ -49,6 +49,29 @@ const Search = () => {
     const FindMarket = marketArrayList.filter((item) =>
         item.includes(searchWord)
     )
+    const goToMainPage = (e) => {
+        const value = e.target.innerHTML;
+        navigate('/MainPage', { state: { id: value } });
+    }
+    // 하위 컬렉션 값을 가져오는 코드.
+    const getCollection = async () => {
+        const q = query(collection(db, "sample"));
+        const querySnapshot = await getDocs(q);
+        const queryData = querySnapshot.docs.map((doc) => ({
+            ...doc.data(), id: doc.id
+        }));
+        console.log(queryData);
+        queryData.map(async (data) => {
+            const workQ = query(collection(db, `sample/${data.id}/reset`));
+            const workDetails = await getDocs(workQ);
+            const workreset = workDetails.docs.map((doc) => ({
+                ...doc.data(), id: doc.id
+            }))
+            setDetails(workreset);
+        })
+        console.log(details);
+    }
+
     return (
         <Container component='main' maxWidth='xs' sx={{ paddingLeft: "0", paddingRight: "0" }}>
             <Box
@@ -109,12 +132,14 @@ const Search = () => {
                                     variant='h6'
                                     sx={{
                                         fontSize: '1em'
-                                    }}>
+                                    }}
+                                    onClick={goToMainPage}>
                                     {item}
                                 </div>
                             )}
                         </Box>}
                 </Box>
+                <button onClick={getCollection}>전통시장 정보 가져오기</button>
             </Box>
         </Container>
     );

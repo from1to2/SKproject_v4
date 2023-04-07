@@ -2,7 +2,7 @@ import { AppBar, Box, Container, IconButton, Stack, Toolbar, Typography, Grid, D
 import { Menu, Search, ArrowForward, ContentCopyOutlined, NotificationsNoneOutlined, BookmarkBorderOutlined, SettingsOutlined, AccountCircleOutlined } from "@mui/icons-material"
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/Home.css';
+
 
 const Home = () => {
     const navigate = useNavigate();

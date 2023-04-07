@@ -92,7 +92,6 @@ const Map = () => {
         </Box>
       </Box>
     </Container>
-
   );
 };
 
