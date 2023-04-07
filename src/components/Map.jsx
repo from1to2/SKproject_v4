@@ -1,98 +1,37 @@
-import { AppBar, Container, Box, Toolbar, Typography, IconButton, Icon } from '@mui/material';
-import { ArrowBack, LocationOnOutlined } from '@mui/icons-material';
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 const { kakao } = window;
+
 const Map = () => {
-  const goToHome = () => {
-    navigate('/');
-  }
-  const [location, setLocation] = useState({
-    getLatitude: 0,
-    getLongitude: 0,
-  });
-  const navigate = useNavigate();
-  navigator.geolocation.getCurrentPosition(getCurrentPS, getError);
-  function getCurrentPS(position) {
-    const Latitude = position.coords.latitude;
-    const Longitude = position.coords.longitude;
-    setLocation({ getLatitude: Latitude, getLongitude: Longitude });
-  }
-  function getError() {
-    console.log("Error!");
-  }
-  useEffect(() => {
-    const container = document.getElementById("map");
-    const options = {
-      center: new kakao.maps.LatLng(
-        location.getLatitude,
-        location.getLongitude
-      ),
-      level: 3,
-    };
-    const map = new kakao.maps.Map(container, options);
-    const markerPosition = new kakao.maps.LatLng(
-      location.getLatitude,
-      location.getLongitude
-    );
-    let marker = new kakao.maps.Marker({
-      position: markerPosition
-    });
-    marker.setMap(map);
-  }, [location.getLatitude, location.getLongitude]);
-  return (
-    <Container
-      component="main"
-      maxWidth="xs">
-      <Box
-        sx={{
-          flexDirection: 'column',
-          display: "flex",
-          alignItems: 'center'
-        }}>
-        <AppBar
-          sx={{ bgcolor: "#FFCC33" }}>
-          <Toolbar>
-            <IconButton
-              size='large'
-              color='inherit'
-              edge='start'
-              onClick={goToHome}>
-              <ArrowBack />
-            </IconButton>
-            <Box
-              //중앙 정렬
-              display="block"
-              margin='auto'>
-              <Icon
-                sx={{ mr: 1 }}><LocationOnOutlined /></Icon>
-              <Typography
-                variant='h6'
-                component="span"
-                sx={{
-                  flexGrow: 1,
-                  textAlign: 'center',
-                  mr: '1.2em'
-                }}>
-                주변 시장 확인하기
-              </Typography>
-            </Box>
-          </Toolbar>
-        </AppBar>
-        <Box>
-          <div>
-            <div id="map"
-              style={{
-                border: '1em',
-                marginTop: '3.5em',
-                width: "26em",
-                height: "20em",
-              }}></div>
-          </div>
-        </Box>
-      </Box>
-    </Container>
-  );
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    }
+    function showPosition(position) {
+        setTimeout(() => {
+            let container = document.getElementById('map');
+            let options = {
+                center: new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                level: 3
+            };
+            let map = new kakao.maps.Map(container, options);
+            let markerPosition = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            let marker = new kakao.maps.Marker({
+                position: markerPosition
+            });
+            marker.setMap(map);
+        }, 500)
+    }
+
+    getLocation();
+
+    return (
+        <>
+            <div id="map" style={{ width: '500px', height: '400px' }}></div>
+        </>
+    )
 };
 
 export default Map;
