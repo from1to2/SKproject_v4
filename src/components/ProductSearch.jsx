@@ -87,9 +87,13 @@ const ProductSearch = () => {
                         */}
                         {product.length === null ?
                             setProduct(<div>검색어를 입력하세요</div>) :
-                            <ImageList sx={{ width: "100%", }} cols={2} rowHeight={140}>
+                            <ImageList
+                                sx={{ width: "100%" }}
+                                cols={2}
+                                rowHeight={140}>
                                 {findProduct.map((item) =>
-                                    <ImageListItem key={item.title}>
+                                    <ImageListItem
+                                        key={item.title}>
                                         <img
                                             src={item.poster}
                                             alt="그림"
@@ -97,10 +101,11 @@ const ProductSearch = () => {
                                                 width: "100%",
                                                 height: "80%",
                                                 borderRadius: '0.5em'
-                                            }} />
-                                        <ImageListItemBar
-                                            subtitle={<span>{item.title}</span>}
-                                            position='below' />
+                                            }}>
+                                            <ImageListItemBar
+                                                subtitle={<span>{item.title}</span>}
+                                                position='below' />
+                                        </img>
                                     </ImageListItem>
                                 )}
                             </ImageList>

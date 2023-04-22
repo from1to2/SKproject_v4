@@ -11,12 +11,16 @@ import Settings from "./components/Settings";
 import Userprofile from "./components/Userprofile";
 import SampleBase from "./components/SampleBase";
 import MainPage from "./components/MainPage";
+import StoreInfo from "./components/StoreInfo";
+import Login from "./components/Login";
 const App = () => {
   return <div>
     <Routes>
+      <Route path="/Login" component={Login} element={<Login />} />
       <Route path="/" component={Home} element={<Home />} />
       <Route path="/Map" component={Map} element={<Map />} />
       <Route path="/MainPage" component={MainPage} element={<MainPage />} />
+      <Route path="/StoreInfo" component={StoreInfo} element={<StoreInfo />} />
       <Route path="/Search" component={Search} element={<Search />} />
       <Route path="/ProductSearch" component={ProductSearch} element={<ProductSearch />} />
       <Route path="/MyOrderHistory" component={MyOrderHistory} element={<MyOrderHistory />} />

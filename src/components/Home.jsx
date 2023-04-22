@@ -1,16 +1,75 @@
-import { AppBar, Box, Container, IconButton, Stack, Toolbar, Typography, Grid, Drawer, List, ListItem, ListItemButton, ListItemIcon, Divider, ListItemText, Avatar, ListItemAvatar, Tabs, Tab } from '@mui/material';
+import { AppBar, Box, Container, IconButton, Stack, Toolbar, Typography, Grid, Drawer, List, ListItem, ListItemButton, ListItemIcon, Divider, ListItemText, Avatar, ListItemAvatar, Tabs, Tab, Button, ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
 import { Menu, Search, ArrowForward, ContentCopyOutlined, NotificationsNoneOutlined, BookmarkBorderOutlined, SettingsOutlined, AccountCircleOutlined } from "@mui/icons-material"
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useCallback, useMemo, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Call, Share } from '@mui/icons-material';
+import { db } from './Firebase';
+import { getDocs, query, collection } from 'firebase/firestore';
+import Product from "./Product"
+import Menus from "./Menu"
+import Information from './information';
+import Review from './review';
 
 const Home = () => {
     const navigate = useNavigate();
     const [value, setValue] = useState('one');
+    const [toggleState, setToggleState] = useState(1);
     const [open, setOpen] = useState(false);
+    const [product, setProduct] = useState('');
+    const marketLists = useMemo(() => [], [])
+    const [Arraymarket, setArrayMarket] = useState();
+    const [compareValue, setCompareValue] = useState();
+
+    const toggleTab = (index) => {
+        setToggleState(index);
+    };
+    // Product 컴포넌트 데이터 filter로 product 값과 같은 값 가져오기 
+    const findProduct = Product.filter((item) =>
+        item.title.includes(product)
+    )
+    // Tab 전환
     const handleToptab = (e, newValue) => {
         setValue(newValue);
     }
+    //Search 페이지에서 시장의 이름을 가져옴. 
+    const location = useLocation();
+    const marketName = location.state.id;
+
+    //Collection 데이터 가져오기  
+    const getCollectionData = async () => {
+        const getcollDat = query(collection(db, "Traditional MarketList"));
+        const getTdmarket = await getDocs(getcollDat);
+        const getNambumarket = getTdmarket.docs.map((doc) => ({
+            ...doc.data(), id: doc.id
+        }))
+        setArrayMarket(getNambumarket[2])
+        console.log(getNambumarket[2])
+        // const getmarktes = getNambumarket.filter(doc => doc.id.includes(marketName))
+        // console.log(getmarktes);
+        getNambumarket.map(async (data) => {
+            const getSubCol = query(collection(db, `Traditional MarketList/${data.id}/product`));
+            const getSubData = await getDocs(getSubCol);
+            const gets = getSubData.docs.map((doc) => ({
+                ...doc.data(), id: doc.id
+            }))
+            console.log(gets);
+        })
+        const marketObjToArray = () => {
+            for (let Objkey in Arraymarket) {
+                if (Arraymarket.hasOwnProperty(Objkey)) {
+                    marketLists.push([Objkey, ": ", Arraymarket[Objkey]])
+                }
+            }
+        }
+        marketObjToArray();
+        console.log(marketLists);
+    }
+    const getMarket = marketLists.filter((item) =>
+        item.includes(marketName)
+    )
+
+
+    // 화면 이동
     const goToMyOrderHistory = () => {
         navigate("/MyOrderHistory")
     }
@@ -29,6 +88,9 @@ const Home = () => {
     const goToProductSearch = () => {
         navigate("/ProductSearch")
     }
+    //화면 이동
+
+    //탭 구성
     const TabPanel = (props) => {
         const { children, value, index } = props;
         return (<div hidden={value !== index}>
@@ -135,9 +197,10 @@ const Home = () => {
                             sx={{
                                 flexGrow: 1,
                                 textAlign: 'center',
-                                marginRight: "1em",
+                                marginRight: "1.5em",
+                                fontWeight: "bold"
                             }}>
-                            홈페이지
+                            {marketName}
                         </Typography>
                         <IconButton
                             size='large'
@@ -171,8 +234,19 @@ const Home = () => {
                             value="three"
                             label="편의시설">
                         </Tab>
+                        <Tab
+                            value="four"
+                            label="가게정보">
+                        </Tab>
+                        <Tab
+                            value="five"
+                            label="상품목록">
+                        </Tab>
                     </Tabs>
-                    <TabPanel value={value} index="one">
+                    {/* 메인 페이지 */}
+                    <TabPanel
+                        value={value}
+                        index="one">
                         <Box>
                             <div style={{ fontSize: "1em", fontWeight: 'bold', marginBottom: 11 }}>
                                 현재 진행중인 이벤트
@@ -201,8 +275,24 @@ const Home = () => {
                                 </Stack>
                             </Stack>
                         </Box>
+                        <button onClick={getCollectionData} style={{ width: '100%' }}>Get</button>
+                        <div>
+                            {getMarket.map((item) => {
+                                <div
+                                    key={item}>
+                                    {item}
+                                </div>
+                                if (item.includes(marketName)) {
+                                    setCompareValue(item[0]);
+                                    console.log(compareValue);
+                                }
+                            })}
+                        </div>
                     </TabPanel>
-                    <TabPanel value={value} index="two">
+                    {/* 시장 정보 */}
+                    <TabPanel
+                        value={value}
+                        index="two">
                         <Box
                             p={2}
                             position='relative'
@@ -279,7 +369,10 @@ const Home = () => {
                             </Typography>
                         </Box>
                     </TabPanel><br />
-                    <TabPanel value={value} index="three">
+                    {/* 편의 시설 */}
+                    <TabPanel
+                        value={value}
+                        index="three">
                         <Box
                             position='relative'
                             bottom='2.5em'
@@ -353,6 +446,160 @@ const Home = () => {
                                 }}>
                                 월~금요일 0시~0시 이용시 90분 무료
                             </Typography>
+                        </Box>
+                    </TabPanel>
+                    {/* 가게 정보 */}
+                    <TabPanel
+                        value={value}
+                        index="four">
+                        <Box>
+                            <Box
+                                border='1px solid #E0E0E0'
+                                boxShadow="0 0 6px">
+                                <img
+                                    src="/images/storeInfo/storeImg.png"
+                                    alt="가게이미지"
+                                    width="100%"
+                                    style={{
+                                        position: 'relative',
+                                        bottom: "1.8em"
+
+                                    }}
+                                />
+                                <Typography
+                                    position='relative'
+                                    variant='h6'
+                                    sx={{
+                                        bottom: '1.5em',
+                                        fontSize: "1.2em",
+                                        textAlign: 'center',
+                                        fontWeight: "bold"
+                                    }}>
+                                    가게명
+                                </Typography>
+                                <Box
+                                    width="100%"
+                                    textAlign="center"
+                                    position='relative'
+                                    bottom='1em'>
+                                    <Typography
+                                        variant='span'
+                                        fontSize='1em'>
+                                        리뷰 330&nbsp;
+                                    </Typography>
+                                    <Typography
+                                        variant='span'>
+                                        🧡540&nbsp;
+                                    </Typography>
+                                    <Typography
+                                        variant='span'>
+                                        <Call fontSize='2em' />전화&nbsp;
+                                    </Typography>
+                                    <Typography
+                                        variant='span'>
+                                        <Share fontSize='2em' />공유&nbsp;
+                                    </Typography><br />
+                                </Box>
+                                <Typography
+                                    variant='div'
+                                    width='100%'
+                                    fontSize='0.8em'
+                                    display='inline-block'
+                                    position='relative'
+                                    left='13%'>
+                                    결제 방법 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예약 및 픽업 구매 현장결제
+                                </Typography><br />
+                                <Typography
+                                    variant='div'
+                                    width='100%'
+                                    fontSize='0.8em'
+                                    display='inline-block'
+                                    position='relative'
+                                    left='13%'>
+                                    픽업준비시간&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 약 10분
+                                </Typography><br />
+                            </Box>
+                            <Box
+                                border='1px solid #E0E0E0'
+                                boxShadow="0 0 3px"
+                                marginTop='0.5em'>
+                                <Button
+                                    className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+                                    onClick={() => toggleTab(1)}
+                                    sx={{
+                                        width: "33%",
+                                        color: "black"
+                                    }}>가게물품</Button>
+                                <Button
+                                    className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+                                    onClick={() => toggleTab(2)}
+                                    sx={{
+                                        width: "33%",
+                                        color: "black"
+                                    }}>가게정보</Button>
+                                <Button
+                                    className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+                                    onClick={() => toggleTab(3)}
+                                    sx={{
+                                        width: "33%",
+                                        color: "black"
+                                    }}>리뷰</Button>
+                                <Box sx={{
+                                    display: "block",
+                                    padding: "1em",
+                                    width: "100%",
+                                    height: "100%"
+                                }}>
+                                    {toggleState === 1 ? <Menus /> : null}
+                                </Box>
+                                <Box>
+                                    {toggleState === 2 ? <Information /> : null}
+                                </Box>
+                                <Box>
+                                    {toggleState === 3 ? <Review /> : null}
+                                </Box>
+                            </Box>
+                        </Box>
+                    </TabPanel>
+                    <TabPanel
+                        value={value}
+                        index="five">
+                        <Box>
+                            {/* <TextField
+                                placeholder='검색어를 입력해주세요'
+                                onChange={onProductSearch}
+                                value={product}
+                                sx={{ bgcolor: '#CCCCCC', borderRadius: '0.5em', border: '1px' }}
+                                fullWidth
+                                InputProps={{
+                                    startAdornment: <IconButton position='start'><Search /></IconButton>
+                                }} /> */}
+                            <div>
+                                {product.length === null ?
+                                    setProduct(<div>검색어를 입력하세요</div>) :
+                                    <ImageList
+                                        sx={{ width: "100%" }}
+                                        cols={2}
+                                        rowHeight={140}>
+                                        {findProduct.map((item) =>
+                                            <ImageListItem
+                                                key={item.title}>
+                                                <img
+                                                    src={item.poster}
+                                                    alt="그림"
+                                                    style={{
+                                                        width: "100%",
+                                                        height: "80%",
+                                                        borderRadius: '0.5em'
+                                                    }} />
+                                                <ImageListItemBar
+                                                    subtitle={<span>{item.title}</span>}
+                                                    position='below' />
+                                            </ImageListItem>
+                                        )}
+                                    </ImageList>
+                                }
+                            </div>
                         </Box>
                     </TabPanel>
                 </Box>

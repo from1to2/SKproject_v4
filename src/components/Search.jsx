@@ -4,16 +4,15 @@ import { AppBar, Box, Container, Grid, IconButton, TextField, Toolbar, Typograph
 import React, { useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from './Firebase';
-import { doc, getDoc, query, getDocs, collection } from 'firebase/firestore';
+import { doc, getDoc, query } from 'firebase/firestore';
 
 
 const Search = () => {
-    const [details, setDetails] = useState();
     const navigate = useNavigate();
     const [searchWord, setsearchWord] = useState('');
     const [marketList, setMarketList] = useState();
     const marketArrayList = useMemo(() => [], []);
-    // const [specificMarket, setSpecificMarket] = useState("");
+    let marketName = '';
     const onSearch = (e) => {
         setsearchWord(e.target.value);
     }
@@ -41,8 +40,8 @@ const Search = () => {
     //엔터키를 눌렀을 때 파이어베이스 데이터를 가져옴.
     const entered = () => {
         if (window.event.keyCode === 13) {
-            marketObjToArray();
             getMarketlist();
+            marketObjToArray();
         }
     }
     // 검색 기능 구현
@@ -50,27 +49,27 @@ const Search = () => {
         item.includes(searchWord)
     )
     const goToMainPage = (e) => {
-        const value = e.target.innerHTML;
-        navigate('/MainPage', { state: { id: value } });
+        marketName = e.target.innerHTML;
+        navigate('/', { state: { id: marketName } });
     }
     // 하위 컬렉션 값을 가져오는 코드.
-    const getCollection = async () => {
-        const q = query(collection(db, "sample"));
-        const querySnapshot = await getDocs(q);
-        const queryData = querySnapshot.docs.map((doc) => ({
-            ...doc.data(), id: doc.id
-        }));
-        console.log(queryData);
-        queryData.map(async (data) => {
-            const workQ = query(collection(db, `sample/${data.id}/reset`));
-            const workDetails = await getDocs(workQ);
-            const workreset = workDetails.docs.map((doc) => ({
-                ...doc.data(), id: doc.id
-            }))
-            setDetails(workreset);
-        })
-        console.log(details);
-    }
+    // const getCollection = async () => {
+    //     const q = query(collection(db, "sample"));
+    //     const querySnapshot = await getDocs(q);
+    //     const queryData = querySnapshot.docs.map((doc) => ({
+    //         ...doc.data(), id: doc.id
+    //     }));
+    //     console.log(queryData);
+    //     queryData.map(async (data) => {
+    //         const workQ = query(collection(db, `sample/${data.id}/reset`));
+    //         const workDetails = await getDocs(workQ);
+    //         const workreset = workDetails.docs.map((doc) => ({
+    //             ...doc.data(), id: doc.id
+    //         }))
+    //         setDetails(workreset);
+    //     })
+    //     console.log(details);
+    // }
 
     return (
         <Container component='main' maxWidth='xs' sx={{ paddingLeft: "0", paddingRight: "0" }}>
@@ -139,7 +138,7 @@ const Search = () => {
                             )}
                         </Box>}
                 </Box>
-                <button onClick={getCollection}>전통시장 정보 가져오기</button>
+                {/* <button onClick={getCollection}>전통시장 정보 가져오기</button> */}
             </Box>
         </Container>
     );
