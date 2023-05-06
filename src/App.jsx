@@ -30,7 +30,7 @@ const App = () => {
       <Route path="/Settings" component={Settings} element={<Settings />} />
       <Route path="/Userprofile" component={Userprofile} element={<Userprofile />} />
       <Route path="/SampleBase" component={SampleBase} element={<SampleBase />} />
-      <Route path="/Purchase" component={SampleBase} element={<Purchase />} />
+      <Route path="/Purchase" component={Purchase} element={<Purchase />} />
     </Routes>
   </div>;
 }
