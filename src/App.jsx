@@ -13,6 +13,7 @@ import SampleBase from "./components/SampleBase";
 import MainPage from "./components/MainPage";
 import StoreInfo from "./components/StoreInfo";
 import Login from "./components/Login";
+import Purchase from "./components/Purchase";
 const App = () => {
   return <div>
     <Routes>
@@ -29,6 +30,7 @@ const App = () => {
       <Route path="/Settings" component={Settings} element={<Settings />} />
       <Route path="/Userprofile" component={Userprofile} element={<Userprofile />} />
       <Route path="/SampleBase" component={SampleBase} element={<SampleBase />} />
+      <Route path="/Purchase" component={SampleBase} element={<Purchase />} />
     </Routes>
   </div>;
 }

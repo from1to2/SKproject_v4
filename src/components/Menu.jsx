@@ -1,5 +1,6 @@
 import React from "react";
 import "./tool.css"
+// import { Margin } from "@mui/icons-material";
 
 const Menu = () => {
     return (
@@ -29,12 +30,12 @@ const Menu = () => {
                 </div>
             </div>
 
-            <hr color='gray' width='450px' align='left' />
+            <hr color='gray' width='90%' align='left' />
 
             <div style={{
                 display: "flex",
                 flexDirection: "row",
-                textAlign: "center"
+                textAlign: "center",
             }}>
                 <div style={{
                     width: "30%",
@@ -55,7 +56,7 @@ const Menu = () => {
                 </div>
             </div>
 
-            <hr color='gray' width='450px' align='left' />
+            <hr color='gray' width='90%' align='left' />
 
             <div style={{
                 display: "flex",

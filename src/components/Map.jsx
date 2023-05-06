@@ -7,10 +7,10 @@ const { kakao } = window;
 
 const Map = () => {
   const navigate = useNavigate();
-  const goToMarketMainpage = (marketName) => {
-    navigate("/");
-    console.log(`you have ${marketName} value here!`);
-  }
+  // const goToMarketMainpage = (marketName) => {
+  //   navigate("/");
+  //   console.log(`you have ${marketName} value here!`);
+  // }
   const goToMainPage = (marketName) => {
     navigate('/', { state: { id: marketName } });
 }

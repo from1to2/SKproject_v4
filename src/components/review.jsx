@@ -4,7 +4,11 @@ import "./tool.css"
 const review = () => {
 
     return (
-        <div>
+        <div style ={{
+            margin: '20px',
+            marginTop: '-40px',
+            marginLeft:'30px'
+        }}>
             <div className="evaluation">
                 <div className="score">
                     <h1>⭐ 4.8</h1>
@@ -29,7 +33,9 @@ const review = () => {
                 </div>
             </div>
 
-            <div className="serch2">
+            <div className="serch2" style = {{
+                margin: '10px',
+            }}>
                 최근리뷰
             </div>
 

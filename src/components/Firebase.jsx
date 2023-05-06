@@ -24,7 +24,7 @@ import { getFirestore, collection, addDoc, query, where } from "firebase/firesto
 import { getStorage, getDownloadURL, ref } from 'firebase/storage';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAf0unhyzbcBYdn5QNB7ek0_GhLJRhLkDM",
+    apiKey: "",
     authDomain: "react-project-e9292.firebaseapp.com",
     databaseURL: "https://react-project-e9292-default-rtdb.firebaseio.com",
     projectId: "react-project-e9292",
