@@ -1,35 +1,52 @@
 const product = [
     {
-        title: "중앙 과일가게",
-        poster: "./images/fruitStore/fruitStore.jpg"
+        title: "A 과일 가게",
+        poster: "./images/fruitStore/fruitStore.jpg",
+        reviewNumber: 100,
+        likeNumber: 70,
+        
     },
     {
-        title: "남부 과일가게",
-        poster: "./images/fruitStore/fruitStore2.jpg"
+        title: "B 과일 가게",
+        poster: "./images/fruitStore/fruitStore2.jpg",
+        reviewNumber: 123,
+        likeNumber: 63
     },
     {
-        title: "동부과일가게",
-        poster: "./images/fruitStore/fruitStore3.jpg"
+        title: "C 과일 가게",
+        poster: "./images/fruitStore/fruitStore3.jpg",
+        reviewNumber: 73,
+        likeNumber: 86
     },
     {
-        title: "서부 과일가게",
-        poster: "./images/fruitStore/fruitStore4.jpg"
+        title: "D 과일 가게",
+        poster: "./images/fruitStore/fruitStore4.jpg",
+        reviewNumber: 55,
+        likeNumber: 8
     },
     {
-        title: "누구네 옷가게",
-        poster: "./images/clothStore/clothStore.jpg"
+        title: "A 옷 가게",
+        poster: "./images/clothStore/clothStore.jpg",
+        reviewNumber: 12,
+        likeNumber: 3
     },
     {
-        title: "근재네 옷가게",
-        poster: "./images/clothStore/clothStore2.jpg"
+        title: "B 옷 가게",
+        poster: "./images/clothStore/clothStore2.jpg",
+        reviewNumber: 75,
+        likeNumber: 9
     },
     {
-        title: "재근네 옷가게",
-        poster: "./images/clothStore/clothStore3.jpg"
+        title: "C 옷 가게",
+        poster: "./images/clothStore/clothStore3.jpg",
+        reviewNumber: 201,
+        likeNumber: 70
     },
     {
-        title: "현석이네 옷가게",
-        poster: "./images/clothStore/clothStore4.jpg"
+        title: "D 옷 가게",
+        poster: "./images/clothStore/clothStore4.jpg",
+        reviewNumber: 31,
+        likeNumber: 12
     },
 
 ];

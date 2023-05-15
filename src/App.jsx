@@ -14,6 +14,7 @@ import MainPage from "./components/MainPage";
 import StoreInfo from "./components/StoreInfo";
 import Login from "./components/Login";
 import Purchase from "./components/Purchase";
+import StoreInfoPage from "./components/StoreInfoPage";
 const App = () => {
   return <div>
     <Routes>
@@ -31,6 +32,7 @@ const App = () => {
       <Route path="/Userprofile" component={Userprofile} element={<Userprofile />} />
       <Route path="/SampleBase" component={SampleBase} element={<SampleBase />} />
       <Route path="/Purchase" component={Purchase} element={<Purchase />} />
+      <Route path="/StoreInfoPage" component={StoreInfoPage} element={<StoreInfoPage />} />
     </Routes>
   </div>;
 }

@@ -9,6 +9,22 @@ import Product from "./Product"
 import Menus from "./Menu"
 import Information from './information';
 import Review from './review';
+import { storage, ref, getDownloadURL } from './Firebase';
+
+console.log("APP의 storage를 가져옵니다.")
+    console.log(storage);
+    console.log("/AnyangJungangMarket 경로의 참조를 가져옵니다.");
+    const storageRef = ref(storage, '/AnyangJungangMarket');
+    console.log(storageRef);
+
+    // getDownloadURL(storageRef).then((url) => {
+    //     const imgsample = document.querySelector('.imgsample');
+    //     imgsample.setAttribute('src', url);
+    //     console.log('/clothStore/clothStore.jpg 경로의 참조한 곳의 url을 출력해봅니다. ')
+    //     console.log(url);
+    // })
+
+
 
 const Home = () => {
     const navigate = useNavigate();
@@ -20,6 +36,23 @@ const Home = () => {
     const [Arraymarket, setArrayMarket] = useState();
     const [compareValue, setCompareValue] = useState();
 
+    const handleStore = (index)=> {
+        let title =Product[index].title;
+        let poster =Product[index].poster;
+        let reviewNumber =Product[index].reviewNumber;
+        let likeNumber =Product[index].likeNumber;
+        
+        navigate('/StoreInfoPage', { state: { index: index } });
+
+
+        console.log("인덱스", index);
+        console.log(title);
+        console.log(poster);
+        console.log("리뷰 개수",reviewNumber);
+        console.log("좋아요 개수",likeNumber);
+
+        
+    }
     const toggleTab = (index) => {
         setToggleState(index);
     };
@@ -234,13 +267,13 @@ const Home = () => {
                             value="three"
                             label="편의시설">
                         </Tab>
-                        <Tab
+                        {/* <Tab
                             value="four"
                             label="가게정보">
-                        </Tab>
+                        </Tab> */}
                         <Tab
                             value="five"
-                            label="상품목록">
+                            label="가게목록">
                         </Tab>
                     </Tabs>
                     {/* 메인 페이지 */}
@@ -581,8 +614,8 @@ const Home = () => {
                                         sx={{ width: "100%" }}
                                         cols={2}
                                         rowHeight={140}>
-                                        {findProduct.map((item) =>
-                                            <ImageListItem
+                                        {findProduct.map((item, index) =>
+                                            <ImageListItem onClick ={()=> handleStore(index)}
                                                 key={item.title}>
                                                 <img
                                                     src={item.poster}
