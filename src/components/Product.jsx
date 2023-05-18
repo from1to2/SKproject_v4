@@ -4,7 +4,11 @@ const product = [
         poster: "./images/fruitStore/fruitStore.jpg",
         reviewNumber: 100,
         likeNumber: 70,
-        
+        items: {
+             이름: ['사과','포도','배'],
+             가격: ['1000원','2000원','2000원'],
+             리뷰개수: [7,1,2]
+        }
     },
     {
         title: "B 과일 가게",

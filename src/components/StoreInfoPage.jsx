@@ -14,12 +14,17 @@ const StoreInfoPage = (props) => {
     const [toggleState, setToggleState] = useState(1);
     const location = useLocation();
     const indexNumber = location.state.index;
+    const [activeTab, setActiveTab] = useState(1);
 
     const title =Product[indexNumber].title;
     const poster =Product[indexNumber].poster;
     const reviewNumber =Product[indexNumber].reviewNumber;
     const likeNumber =Product[indexNumber].likeNumber;
     
+    const handleTabClick = (tabIndex) => {
+        setActiveTab(tabIndex);
+      };
+
     const toggleTab = (index) => {
         setToggleState(index);
     };
@@ -100,6 +105,7 @@ const StoreInfoPage = (props) => {
                     결제 방법:예약 및 픽업 구매,현장 결제
                 </div>
             </>
+            
 
             <div>
                 <div style={{ display: "flex" }}>
@@ -164,7 +170,7 @@ const StoreInfoPage = (props) => {
                             height: "100%",
                             display: "none"
                         }} >
-                        <Menu />
+                        <Menu index ={indexNumber}/>
                     </div>
 
                     <div style={

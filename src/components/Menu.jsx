@@ -1,9 +1,25 @@
 import React from "react";
 import "./tool.css"
+import Product from "./Product";
+
 // import { Margin } from "@mui/icons-material";
 
-const Menu = () => {
+const Menu = (props) => {
+
+    let item1Name = Product[props.index].items.이름[0];
+    let item1Price = Product[props.index].items.가격[0];
+    let item1Review = Product[props.index].items.리뷰개수[0];
+
+    let item2Name = Product[props.index].items.이름[1];
+    let item2Price = Product[props.index].items.가격[1];
+    let item2Review = Product[props.index].items.리뷰개수[1];
+
+    let item3Name = Product[props.index].items.이름[2];
+    let item3Price = Product[props.index].items.가격[2];
+    let item3Review = Product[props.index].items.리뷰개수[2];
+
     return (
+        
         <div>
             <div style={{
                 display: "flex",
@@ -15,9 +31,9 @@ const Menu = () => {
                     marginRight: "50px",
                     fontSize: "15px",
                 }} >
-                    <h3>맛있는 꽈배기</h3>
-                    <h3>리뷰(320)</h3>
-                    <h3>3,700원</h3>
+                    <h3>{item1Name}</h3>
+                    <h3>리뷰({item1Review})</h3>
+                    <h3>{item1Price}</h3>
                 </div>
                 <div>
                     <img style={{
@@ -42,9 +58,9 @@ const Menu = () => {
                     marginRight: "50px",
                     fontSize: "15px",
                 }}  >
-                    <h3>맛있는 사과</h3>
-                    <h3>리뷰(200)</h3>
-                    <h3>2,700원</h3>
+                    <h3>{item2Name}</h3>
+                    <h3>리뷰({item2Review})</h3>
+                    <h3>{item2Price}</h3>
                 </div>
                 <div>
                     <img style={{
@@ -68,9 +84,9 @@ const Menu = () => {
                     marginRight: "50px",
                     fontSize: "15px",
                 }}  >
-                    <h3>맛있는 배</h3>
-                    <h3>리뷰(108)</h3>
-                    <h3>1,700원</h3>
+                    <h3>{item3Name}</h3>
+                    <h3>리뷰({item3Review})</h3>
+                    <h3>{item3Price}</h3>
                 </div>
                 <div>
                     <img style={{
