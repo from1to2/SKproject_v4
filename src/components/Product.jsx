@@ -14,13 +14,23 @@ const product = [
         title: "B 과일 가게",
         poster: "./images/fruitStore/fruitStore2.jpg",
         reviewNumber: 123,
-        likeNumber: 63
+        likeNumber: 63,
+        items: {
+             이름: ['귤','파인애플'],
+             가격: ['500원','1500원'],
+             리뷰개수: [3,7]
+        }
     },
     {
         title: "C 과일 가게",
         poster: "./images/fruitStore/fruitStore3.jpg",
         reviewNumber: 73,
-        likeNumber: 86
+        likeNumber: 86,
+        items: {
+             이름: ['초록사과','포도','배','감','오렌지'],
+             가격: ['1200원','1800원','2000원','1300원','1500원'],
+             리뷰개수: [8,3,4,2,4]
+        }
     },
     {
         title: "D 과일 가게",
