@@ -1,7 +1,7 @@
 import React from "react";
 import "./tool.css"
 import Product from "./Product";
-
+import PickUpOrder from "./PickUpOrder";
 // import { Margin } from "@mui/icons-material";
 
 const Menu = (props) => {
@@ -26,6 +26,7 @@ const Menu = (props) => {
                 src="./images/storeInfo/item.png"
               />
             </div>
+          {<PickUpOrder itemName={itemName} index={index}></PickUpOrder>}
           </div>
           <hr color='gray' width='90%' align='left' />
         </>
