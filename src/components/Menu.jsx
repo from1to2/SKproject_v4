@@ -23,7 +23,7 @@ const Menu = (props) => {
               <img
                 style={{ width: "100%", height: "150px", border: "2px solid", borderRadius: "20px" }}
                 alt="mark"
-                src="./images/storeInfo/users.png"
+                src="./images/storeInfo/item.png"
               />
             </div>
           </div>
