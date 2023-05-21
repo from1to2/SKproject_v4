@@ -5,7 +5,7 @@ import PickUpOrder from "./PickUpOrder";
 // import { Margin } from "@mui/icons-material";
 
 const Menu = (props) => {
-
+    const storeName = Product[props.index].title;
     const items = Product[props.index].items;
     const itemNames = items.이름;
 
@@ -26,7 +26,7 @@ const Menu = (props) => {
                 src="./images/storeInfo/item.png"
               />
             </div>
-          {<PickUpOrder itemName={itemName} index={index}></PickUpOrder>}
+          {<PickUpOrder itemName={itemName} storeName={storeName}></PickUpOrder>}
           </div>
           <hr color='gray' width='90%' align='left' />
         </>
