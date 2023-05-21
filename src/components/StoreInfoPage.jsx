@@ -186,7 +186,7 @@ const StoreInfoPage = (props) => {
                                 height: "100%",
                                 display: "none"
                             }}>
-                        <Information />
+                        <Information index ={indexNumber}/>
                     </div>
 
                     <div style={
