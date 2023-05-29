@@ -10,6 +10,7 @@ import Menus from "./Menu"
 import Information from './information';
 import Review from './review';
 import { storage, ref, getDownloadURL } from './Firebase';
+import MarketInfo from './MarketInfo';
 
 console.log("APP의 storage를 가져옵니다.")
     console.log(storage);
@@ -67,7 +68,7 @@ const Home = () => {
     //Search 페이지에서 시장의 이름을 가져옴. 
     const location = useLocation();
     const marketName = location.state.id;
-
+    console.log(marketName);
     //Collection 데이터 가져오기  
     const getCollectionData = async () => {
         const getcollDat = query(collection(db, "Traditional MarketList"));
@@ -298,14 +299,14 @@ const Home = () => {
                                 sx={{ width: '100%' }}>
                                 <Stack
                                     direction="column">
-                                    <img src="/images/homePageImg/tteokbokki.png" alt="떡볶이" width="100%" height="80%" />
-                                    <div style={{ textAlign: 'center' }}>먹짱을 위한 맛집 코스</div>
+                                    <img src="/images/homePageImg/recommendedcourse.png" alt="떡볶이" width="100%" height="80%" />
+                                    <div style={{ textAlign: 'center', fontWeight:'bold' }}>먹짱을 위한 맛집 코스</div>
                                 </Stack>
-                                <Stack
+                                {/* <Stack
                                     direction="column">
                                     <img src="/images/homePageImg/seasonedChicken.png" alt="양념치킨" width="100%" height="80%" />
                                     <div style={{ textAlign: 'center' }}>오늘 야식은 이거!</div>
-                                </Stack>
+                                </Stack> */}
                             </Stack>
                         </Box>
                         <button onClick={getCollectionData} style={{ width: '100%' }}>Get</button>
@@ -343,10 +344,10 @@ const Home = () => {
                                 variant='h6'
                                 component='div'
                                 sx={{
-                                    fontSize: '0.8em',
+                                    fontSize: '1rem',
                                     marginBottom: '1em'
                                 }}>
-                                식품류, 의류, 음식업, 생활용품
+                                <mark>식품류, 의류, 음식업, 생활용품</mark>
                             </Typography>
                             <Typography
                                 variant='h6'
@@ -364,8 +365,9 @@ const Home = () => {
                                 sx={{
                                     fontSize: '1em'
                                 }}>
-                                경기도 안양시 주소주소
+                                <mark>{MarketInfo.find((item)=> item.title == marketName).address }</mark>
                             </Typography>
+                            <br></br>
                             <Typography
                                 variant='h6'
                                 component='div'
@@ -381,8 +383,9 @@ const Home = () => {
                                 sx={{
                                     fontSize: '1em'
                                 }}>
-                                경기도 안양시 주소주소
+                                 <mark>{MarketInfo.find((item)=> item.title == marketName).parkingaddress }</mark>
                             </Typography>
+                            <br></br>
                             <Typography
                                 variant='h6'
                                 component='div'
@@ -392,13 +395,14 @@ const Home = () => {
                                 }}>
                                 주차 요금
                             </Typography>
+                            
                             <Typography
                                 variant='h6'
                                 component='div'
                                 sx={{
                                     fontSize: '1em'
                                 }}>
-                                월-금요일 0시~0시 이용시 90분 무료
+                                <mark>{MarketInfo.find((item)=> item.title == marketName).parkingfare }</mark>
                             </Typography>
                         </Box>
                     </TabPanel><br />
@@ -411,6 +415,8 @@ const Home = () => {
                             bottom='2.5em'
                             p={2}>
                             <img src="/images/marketInfo/getDirection.png" alt="주차장" width='100%' />
+                            <br></br>
+                            <br></br>
                             <Typography
                                 variant='h6'
                                 component='div'
@@ -426,8 +432,9 @@ const Home = () => {
                                 sx={{
                                     fontSize: '1em'
                                 }}>
-                                주변에 있는 자전거 보관소 위치 제공
+                                <mark>{MarketInfo.find((item)=> item.title == marketName).address }</mark>
                             </Typography>
+                            <br></br>
                             <Typography
                                 variant='h6'
                                 component='div'
@@ -443,8 +450,9 @@ const Home = () => {
                                 sx={{
                                     fontSize: '1em'
                                 }}>
-                                주변 물품 보관소 위치 정보 제공
+                                <mark>{MarketInfo.find((item)=> item.title == marketName).parkingaddress }</mark>
                             </Typography>
+                            <br></br>
                             <Typography
                                 variant='h6'
                                 component='div'
@@ -460,8 +468,9 @@ const Home = () => {
                                 sx={{
                                     fontSize: '1em'
                                 }}>
-                                안양시 만안구 주소주소
+                               <mark>{MarketInfo.find((item)=> item.title == marketName).parkingaddress }</mark>
                             </Typography>
+                            <br></br>
                             <Typography
                                 variant='h6'
                                 component='div'
@@ -477,7 +486,7 @@ const Home = () => {
                                 sx={{
                                     fontSize: '1em'
                                 }}>
-                                월~금요일 0시~0시 이용시 90분 무료
+                                <mark>{MarketInfo.find((item)=> item.title == marketName).parkingfare }</mark>
                             </Typography>
                         </Box>
                     </TabPanel>
