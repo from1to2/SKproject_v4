@@ -38,9 +38,9 @@ const Login = () => {
                 </ImageListItem>
             </ImageList>
 
-            <TextField style={{ width: '84%', marginbot: '10px', padding: '3px' }} id="standard-basic" placeholder='ID' variant="standard" onChange={(e) => setId(e.target.value)} onKeyDown={handleEnter} />
-            <TextField style={{ width: '84%', marginbot: '4px', padding: '3px' }} id="standard-basic" placeholder='Password' variant="standard" onChange={(e) => setPassword(e.target.value)} onKeyDown={handleEnter} />
-            <Button onClick={goToFirstPage} sx={{ display: "block" }}
+            <TextField style={{ marginLeft:'2rem', width: '84%', marginbot: '10px', padding: '3px' }} id="standard-basic" placeholder='ID' variant="standard" onChange={(e) => setId(e.target.value)} onKeyDown={handleEnter} />
+            <TextField style={{ marginLeft:'2rem', width: '84%', marginbot: '4px', padding: '3px' }} id="standard-basic" placeholder='Password' variant="standard" onChange={(e) => setPassword(e.target.value)} onKeyDown={handleEnter} />
+            <Button style ={{marginLeft:'11.5rem',marginTop:'2rem'}}onClick={goToFirstPage} sx={{ display: "block" }}
                 size="large" color="error" variant="contained">
                 로그인
             </Button>
