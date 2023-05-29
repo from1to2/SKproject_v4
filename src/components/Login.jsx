@@ -6,17 +6,34 @@ const Login = () => {
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-
+    //앤터키
     function handleEnter(e) {
         if (e.key === 'Enter') {
             e.preventDefault();
             console.log('Enter key pressed!');
-            goToFirstPage();
+            if (id === 'iamuser') {
+                goToFirstPage();
+            } else if (id === 'iammaster') {
+                goToSecondPage();
+            } 
         }
     }
+    const handleClick = (id) => {
+        if (id === 'iamuser') {
+            goToFirstPage();
+        } else if (id === 'iammaster') {
+            goToSecondPage();
+        } 
+    };
+    
     function goToFirstPage() {
         console.log(`입력한 ID는 ${id}이고, Password는 ${password}입니다.`);
-        navigate("/Firstpage");
+        navigate("/Search");
+    }
+
+    function goToSecondPage() {
+        console.log(`입력한 ID는 ${id}이고, Password는 ${password}입니다.`);
+        navigate("/ShopKeeper");
     }
 
     return (
@@ -38,12 +55,13 @@ const Login = () => {
                 </ImageListItem>
             </ImageList>
 
-            <TextField style={{ marginLeft:'2rem', width: '84%', marginbot: '10px', padding: '3px' }} id="standard-basic" placeholder='ID' variant="standard" onChange={(e) => setId(e.target.value)} onKeyDown={handleEnter} />
-            <TextField style={{ marginLeft:'2rem', width: '84%', marginbot: '4px', padding: '3px' }} id="standard-basic" placeholder='Password' variant="standard" onChange={(e) => setPassword(e.target.value)} onKeyDown={handleEnter} />
-            <Button style ={{marginLeft:'11.5rem',marginTop:'2rem'}}onClick={goToFirstPage} sx={{ display: "block" }}
+            <TextField style={{ marginLeft:'1rem', width: '84%', marginbot: '10px', padding: '3px' }} id="standard-basic" placeholder='ID' variant="standard" onChange={(e) => setId(e.target.value)} onKeyDown={handleEnter} />
+            <TextField style={{ marginLeft:'1rem',width: '84%', marginbot: '4px', padding: '3px' }} id="standard-basic" placeholder='Password' variant="standard" onChange={(e) => setPassword(e.target.value)} onKeyDown={handleEnter} />
+            <Button style ={{marginTop:'2rem', marginLeft: '10rem'}} onClick={() => handleClick(id)} sx={{ display: "block" }}
                 size="large" color="error" variant="contained">
-                로그인
+                사용자 로그인
             </Button>
+            
 
         </>
     )
