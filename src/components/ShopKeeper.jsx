@@ -361,6 +361,7 @@ const ShopKeeper = () => {
                         <Typography variant='h6' component="div" sx={{ color: '#393939', fontSize: "15px" }}>
                             수정 주문가능 수량  
                             <input></input>
+                            
                             <button>수정</button>
                         </Typography>
                         </Box>
