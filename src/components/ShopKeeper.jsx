@@ -11,7 +11,7 @@ import { fireStoreJob } from "./Firebase.jsx";
 import { async } from '@firebase/util';
 
 const ShopKeeper = () => {
-
+    
     const navigate = useNavigate();
     const [value, setValue] = useState('one');
     const handleToptab = (e, newValue) => {
@@ -56,7 +56,7 @@ const ShopKeeper = () => {
         try {
             const q = query(OrderCollectionRef, orderBy("timestamp", "desc"))
             const getData = await getDocs(collection(db, "Order"))
-
+            
             getData.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
                 console.log(doc.id, " => ", doc.data());})
@@ -70,16 +70,33 @@ const ShopKeeper = () => {
         }
     }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const snapshot = await getDocs(query(OrderCollectionRef, orderBy("timestamp", "desc")));
-      const fetchedData = snapshot.docs.map((doc) => doc.data());
-      setDataList(fetchedData);
-    };
-
-    fetchData();
-  }, []);
-
+    useEffect(() => {
+        const fetchData = async () => {
+          const snapshot = await getDocs(query(OrderCollectionRef, orderBy('timestamp', 'desc')));
+          const fetchedData = snapshot.docs.map((doc) => {
+            const data = doc.data()
+            const id = doc.id
+            return { id, ...data };
+            }
+            );
+          setDataList(fetchedData);
+        };
+    
+        const unsubscribe = onSnapshot(
+          query(collection(db, "Order"), orderBy('timestamp', 'desc')),
+          (snapshot) => {
+            const updatedData = snapshot.docs.map((doc) => {
+                const data = doc.data()
+                const id = doc.id
+                return { id, ...data };
+            });
+            setDataList(updatedData);
+          }
+        );
+    
+        fetchData();
+        return () => unsubscribe();
+      }, []);
     let OrderList = [];
     const [Order1, setOrder1] = useState("");
     return (
@@ -255,7 +272,55 @@ const ShopKeeper = () => {
                                 <Box key={data.id}
                                 sx={{ border: "1px solid #E0E0E0", boxShadow: "0 0 6px", marginBottom: 2, padding: 1, position:"relative" }}>
                                 <button className="orderlistbtn" onClick={function() {alert('주문서를 출력하시겠습니까?')}}>주문서 출력</button>
-                                <button className="order1" onClick={function() {alert('주문 접수를 하시겠습니까?')}}>주문 접수</button>
+                                <button className="order1" onClick={() => {
+                                    if (data.state === '주문 접수') {
+                                        {
+                                            const documentRef = doc(db, 'Order', data.id);
+                                            const updatedFields = {
+                                              state: '접수 완료'
+                                              // 필요한 필드들 추가
+                                            };
+                                  
+                                            updateDoc(documentRef, updatedFields);
+                                          }
+                                        console.log('접수 완료로 바뀜')
+                                    } else if (data.state === '접수 완료') {
+                                        {
+                                            const documentRef = doc(db, 'Order', data.id);
+                                            const updatedFields = {
+                                              state: '픽업 대기'
+                                              // 필요한 필드들 추가
+                                            };
+                                  
+                                            updateDoc(documentRef, updatedFields);
+                                          }
+                                        console.log('픽업 대기로 바뀜')
+                                    } else if (data.state === '픽업 대기') {
+                                        {
+                                            const documentRef = doc(db, 'Order', data.id);
+                                            const updatedFields = {
+                                              state: '주문 완료'
+                                              // 필요한 필드들 추가
+                                            };
+                                  
+                                            updateDoc(documentRef, updatedFields);
+                                          }
+                                        console.log('주문 완료로 바뀜')
+                                    }
+
+                                    else if (data.state === '주문 완료') {
+                                        {
+                                            const documentRef = doc(db, 'Order', data.id);
+                                            const updatedFields = {
+                                              state: '주문 접수'
+                                              // 필요한 필드들 추가
+                                            };
+                                  
+                                            updateDoc(documentRef, updatedFields);
+                                          }
+                                        console.log('다시 처음으로(나중엔 주문 완료에서 종료)')
+                                    }
+                                }}>{data.state}</button>
                                     <Typography variant='h6' omponent="div" sx={{ color: 'black', fontSize: "20px" }}> 
                                         {data.ordertime}
                                     </Typography>
