@@ -15,6 +15,8 @@ import StoreInfo from "./components/StoreInfo";
 import Login from "./components/Login";
 import Purchase from "./components/Purchase";
 import StoreInfoPage from "./components/StoreInfoPage";
+import ShopKeeper from "./components/ShopKeeper";
+import ProductEdit from "./components/ProductEdit";
 const App = () => {
   return <div>
     <Routes>
@@ -33,6 +35,8 @@ const App = () => {
       <Route path="/SampleBase" component={SampleBase} element={<SampleBase />} />
       <Route path="/Purchase" component={Purchase} element={<Purchase />} />
       <Route path="/StoreInfoPage" component={StoreInfoPage} element={<StoreInfoPage />} />
+      <Route path="/ShopKeeper" component={ShopKeeper} element={<ShopKeeper />} />
+      <Route path="/ProductEdit" component={ProductEdit} element={<ProductEdit />} />
     </Routes>
   </div>;
 }

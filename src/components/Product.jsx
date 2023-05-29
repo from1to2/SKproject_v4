@@ -13,7 +13,8 @@ const product = [
             items: {
                 이름: ['사과','포도','배','오렌지','참외'],
                 가격: ['1000원','2000원','2000원','1500원','1300원'],
-                리뷰개수: [7,1,2,10,13]
+                리뷰개수: [7,1,2,10,13],
+                이미지주소: ['./images/storeInfo/apple.jpg','./images/storeInfo/grape.jpg','./images/storeInfo/pear.jpg','./images/storeInfo/orange.jpg','./images/storeInfo/melon.jpg']
             },
     },
     {
@@ -30,7 +31,9 @@ const product = [
         items: {
              이름: ['귤','파인애플','사과','수박'],
              가격: ['500원','1500원','1000원','3000원'],
-             리뷰개수: [3,7,3,10]
+             리뷰개수: [3,7,3,10],
+             이미지주소: ['./images/storeInfo/tangerine.jpg','./images/storeInfo/pineapple.jpg','./images/storeInfo/apple.jpg','./images/storeInfo/watermelon.jpg']
+         
         }
     },
     {
@@ -47,7 +50,9 @@ const product = [
         items: {
              이름: ['초록사과','포도','배','감','오렌지','수박','호박'],
              가격: ['1200원','1800원','2000원','1300원','1500원','3000원','2500원'],
-             리뷰개수: [8,3,4,2,4,20,13]
+             리뷰개수: [8,3,4,2,4,20,13],
+             이미지주소: ['./images/storeInfo/greenapple.jpg','./images/storeInfo/grape.jpg','./images/storeInfo/pear.jpg','./images/storeInfo/persimmon.jpg','./images/storeInfo/orange.jpg','./images/storeInfo/watermelon.jpg','./images/storeInfo/pumpkin.jpg']
+         
         }
     },
     {
@@ -64,7 +69,9 @@ const product = [
         items: {
              이름: ['망고','포도','배','감','귤'],
              가격: ['2000원','1800원','2000원','1300원','300원'],
-             리뷰개수: [8,3,4,2,4]
+             리뷰개수: [8,3,4,2,4],
+             이미지주소: ['./images/storeInfo/mango.jpg','./images/storeInfo/grape.jpg','./images/storeInfo/pear.jpg','./images/storeInfo/persimmon.jpg','./images/storeInfo/tangerine.jpg']
+         
         }
     },
     {
@@ -81,7 +88,9 @@ const product = [
         items: {
              이름: ['니트','치마','청바지','면반바지','면반팔티','청자켓'],
              가격: ['10000원','7000원','4000원','3000원','3000원','7000원'],
-             리뷰개수: [8,3,4,2,4,8]
+             리뷰개수: [8,3,4,2,4,8],
+             이미지주소: ['./images/storeInfo_cloth/nit.jpg','./images/storeInfo_cloth/skirt.jpg','./images/storeInfo_cloth/jeanskirt.jpg','./images/storeInfo_cloth/cottonshorts.jpg','./images/storeInfo_cloth/cottonshortsleeveshirt.jpg','./images/storeInfo_cloth/jeanjacket.jpg']
+         
         }
     },
     {
@@ -98,7 +107,9 @@ const product = [
         items: {
              이름: ['니트','치마','청치마','반팔티','가죽자켓'],
              가격: ['7000원','4000원','5000원','2000원','12000원'],
-             리뷰개수: [10,3,3,2,1]
+             리뷰개수: [10,3,3,2,1],
+             이미지주소: ['./images/storeInfo_cloth/nit.jpg','./images/storeInfo_cloth/skirt.jpg','./images/storeInfo_cloth/jeanskirt.jpg','./images/storeInfo_cloth/cottonshorts.jpg','./images/storeInfo_cloth/leatherjacket.jpg']
+         
         }
     },
     {
@@ -115,7 +126,9 @@ const product = [
         items: {
              이름: ['긴팔','흰색반팔','패딩','면바지','양말'],
              가격: ['4000원','2000원','14000원','3000원','500원'],
-             리뷰개수: [1,2,7,10,14]
+             리뷰개수: [1,2,7,10,14],
+             이미지주소: ['./images/storeInfo_cloth/longsleeve.jpg','./images/storeInfo_cloth/whiteshirts.jpg','./images/storeInfo_cloth/paddingjacket.jpg','./images/storeInfo_cloth/cottonshorts.jpg','./images/storeInfo_cloth/socks.jpg']
+         
         }
     },
     {
@@ -132,7 +145,9 @@ const product = [
         items: {
              이름: ['양말','흰반팔티','갈색반바지','니트','자켓','치마','청치마'],
              가격: ['600원','1800원','5000원','8000원','13000원','6000원','7000원'],
-             리뷰개수: [11,2,1,1,16,6,13]
+             리뷰개수: [11,2,1,1,16,6,13],
+             이미지주소: ['./images/storeInfo_cloth/socks.jpg','./images/storeInfo_cloth/whiteshirts.jpg','./images/storeInfo_cloth/cottonshorts.jpg','./images/storeInfo_cloth/nit.jpg','./images/storeInfo_cloth/leatherjacket.jpg','./images/storeInfo_cloth/skirt.jpg','./images/storeInfo_cloth/jeanskirt.jpg']
+         
         }
     },
 

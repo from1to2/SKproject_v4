@@ -3,3 +3,52 @@
     margin: auto;
     display: block;
 }
+
+.orderlistbtn {
+    background-color : white;
+    border-color:orange;
+    color:orange;
+    font-weight: bold;
+    font-size: 100%;
+    width:140px;
+    height:50px;
+    position:absolute;
+    top:5px;
+    right:5px;
+}
+
+.orderlistbtn:hover {
+    color:white;
+    background-color:#F6921D;
+}
+
+.order1 {
+    background-color : #F6921D;
+    border-color:#F6921D;
+    color:white;
+    font-weight: bold;
+    font-size:100%;
+    width:140px;
+    height:50px;
+    position:absolute;
+    bottom:5px;
+    right:5px;
+}
+
+.order1:hover{
+    color:white;
+    background-color: #ac5c02;
+}
+
+.order2 {
+    background-color : white;
+    border-color:orange;
+    color:orange;
+    font-weight: bold;
+    font-size: 100%;
+    width:140px;
+    height:50px;
+    position:absolute;
+    bottom:5px;
+    right:5px;
+}

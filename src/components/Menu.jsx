@@ -8,7 +8,7 @@ const Menu = (props) => {
     const storeName = Product[props.index].title;
     const items = Product[props.index].items;
     const itemNames = items.이름;
-
+    
     return (
         <div style={{ maxHeight: "465px", overflowY: "auto" }}>
         {itemNames.map((itemName, index) => (
@@ -21,9 +21,9 @@ const Menu = (props) => {
             </div>
             <div>
               <img
-                style={{ width: "100%", height: "150px", border: "2px solid", borderRadius: "20px" }}
+                style={{ width: "10rem", height: "150px", border: "2px solid", borderRadius: "20px", backgroundSize:'background-size: cover;' }}
                 alt="mark"
-                src="./images/storeInfo/item.png"
+                src={items.이미지주소[index]}
               />
             </div>
           {<PickUpOrder itemName={itemName} storeName={storeName}></PickUpOrder>}
